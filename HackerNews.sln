@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews", "HackerNews\HackerNews.csproj", "{323ED406-9DA6-41FC-916C-95F11EA2A3E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.API", "HackerNews.API\HackerNews.API.csproj", "{917063A1-7827-4A9F-A7B6-BC0D625817CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|ARM.Build.0 = Debug|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|ARM.Deploy.0 = Debug|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|x86.ActiveCfg = Debug|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|x86.Build.0 = Debug|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|x86.Deploy.0 = Debug|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|ARM.ActiveCfg = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|ARM.Build.0 = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|ARM.Deploy.0 = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.ActiveCfg = Release|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.Build.0 = Release|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.Deploy.0 = Release|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|ARM.Build.0 = Debug|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|x86.ActiveCfg = Debug|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|x86.Build.0 = Debug|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|ARM.ActiveCfg = Release|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|ARM.Build.0 = Release|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|x86.ActiveCfg = Release|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

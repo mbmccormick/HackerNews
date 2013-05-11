@@ -1,0 +1,110 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="HackerNews.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:HackerNews"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="#FFFF6600"
+    shell:SystemTray.ForegroundColor="#FF000000"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">        
+        <phone:Pivot Title="HACKER NEWS" Foreground="Black">            
+            <phone:PivotItem Header="top">
+                <Grid Margin="0,0,0,0">
+                    <ListBox x:Name="lstTopItems" ItemsSource="{Binding TopItems}" Margin="0,0,0,0" Foreground="Black">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,6" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
+                                    <uc:ListItemControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock x:Name="txtTopItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtTopItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                </Grid>
+            </phone:PivotItem>
+            
+            <phone:PivotItem Header="new">
+                <Grid Margin="0,0,0,0">
+                    <ListBox x:Name="lstNewItems" ItemsSource="{Binding NewItems}" Margin="0,0,0,0" Foreground="Black">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,6" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
+                                    <uc:ListItemControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock x:Name="txtNewItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtNewItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="ask">
+                <Grid Margin="0,0,0,0">
+                    <ListBox x:Name="lstAskItems" ItemsSource="{Binding AskItems}" Margin="0,0,0,0" Foreground="Black">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,6" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
+                                    <uc:ListItemControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock x:Name="txtAskItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtAskItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
+            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="btnRefresh_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
