@@ -67,6 +67,21 @@ namespace HackerNews
 
             GlobalLoading.Instance.IsLoading = true;
 
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                TopItems.Clear();
+                NewItems.Clear();
+                AskItems.Clear();
+
+                this.txtTopItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtNewItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtAskItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                this.txtTopItemsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtNewItemsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtAskItemsLoading.Visibility = System.Windows.Visibility.Visible;
+            });
+
             ServiceClient.GetTopItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
