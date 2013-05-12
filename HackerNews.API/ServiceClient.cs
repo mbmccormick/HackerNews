@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -18,7 +19,7 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        public static void GetTopItems(Action<Response> callback)
+        public void GetTopItems(Action<Response> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/page") as HttpWebRequest;
             request.Accept = "application/json";
@@ -52,7 +53,7 @@ namespace HackerNews.API
             }, state);
         }
 
-        public static void GetNewItems(Action<Response> callback)
+        public void GetNewItems(Action<Response> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/new") as HttpWebRequest;
             request.Accept = "application/json";
@@ -86,7 +87,7 @@ namespace HackerNews.API
             }, state);
         }
 
-        public static void GetAskItems(Action<Response> callback)
+        public void GetAskItems(Action<Response> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/ask") as HttpWebRequest;
             request.Accept = "application/json";

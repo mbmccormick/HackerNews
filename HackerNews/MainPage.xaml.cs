@@ -82,7 +82,9 @@ namespace HackerNews
                 this.txtAskItemsLoading.Visibility = System.Windows.Visibility.Visible;
             });
 
-            ServiceClient.GetTopItems((result) =>
+            ServiceClient client = new ServiceClient();
+
+            client.GetTopItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -111,7 +113,7 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetNewItems((result) =>
+            client.GetNewItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -140,7 +142,7 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetAskItems((result) =>
+            client.GetAskItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
