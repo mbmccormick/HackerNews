@@ -35,44 +35,51 @@ namespace HackerNews
         {
             InitializeComponent();
 
+            this.Loaded += CommentsPage_Loaded;
+        }
+
+        private void CommentsPage_Loaded(object sender, EventArgs e)
+        {
             LoadData();
         }
 
         private void LoadData()
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
-
-            SmartDispatcher.BeginInvoke(() =>
+            string id;
+            if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
-                this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
-            });
+                GlobalLoading.Instance.IsLoadingText("Loading...");
 
-            ServiceClient.GetComments((result) =>
-            {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                });
 
-                    if (result != null &&
-                        result.items != null)
+                ServiceClient.GetComments((result) =>
+                {
+                    SmartDispatcher.BeginInvoke(() =>
                     {
-                        this.Comments.Clear();
+                        this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                        foreach (Comment item in result.items)
+                        if (result != null &&
+                            result.items != null)
                         {
-                            this.Comments.Add(item);
+                            this.Comments.Clear();
+
+                            foreach (Comment item in result.items)
+                            {
+                                this.Comments.Add(item);
+                            }
+                        }
+                        else
+                        {
+                            this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                         }
 
-                        this.Comments.RemoveAt(this.Comments.Count - 1);
-                    }
-                    else
-                    {
-                        this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
-                    }
-
-                    GlobalLoading.Instance.IsLoading = false;
-                });
-            }, "123456");
+                        GlobalLoading.Instance.IsLoading = false;
+                    });
+                }, id);
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

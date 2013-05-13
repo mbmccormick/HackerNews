@@ -34,7 +34,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
-                                    <uc:ListItemControl />
+                                    <uc:PostControl />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -61,7 +61,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
-                                    <uc:ListItemControl />
+                                    <uc:PostControl />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -88,7 +88,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
-                                    <uc:ListItemControl />
+                                    <uc:PostControl />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

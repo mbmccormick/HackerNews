@@ -14,6 +14,14 @@ namespace HackerNews.API.Models
         public int grayedOutPercent { get; set; }
         public string reply_id { get; set; }
         public string time { get; set; }
-        public List<object> children { get; set; }
+        public List<Comment> children { get; set; }
+
+        public string title
+        {
+            get
+            {
+                return username + " " + time;
+            }
+        }
     }
 }

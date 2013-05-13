@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace HackerNews
 {
-    public partial class ListItemControl : UserControl
+    public partial class CommentControl : UserControl
     {
-        public ListItemControl()
+        public CommentControl()
         {
             InitializeComponent();
         }

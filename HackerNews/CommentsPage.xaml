@@ -20,6 +20,26 @@
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="comments">
                 <Grid Margin="0,0,0,0">
+                    <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,6" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="12,0,12,24">
+                                    <uc:CommentControl />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
                     <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                     <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                 </Grid>

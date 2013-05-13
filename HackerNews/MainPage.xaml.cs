@@ -74,6 +74,15 @@ namespace HackerNews
 
             SmartDispatcher.BeginInvoke(() =>
             {
+                if (this.txtTopPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+                    this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
+                if (this.txtNewPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+                    this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
+                if (this.txtAskPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+                    this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
                 this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
@@ -86,7 +95,8 @@ namespace HackerNews
                     this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
                     if (result != null &&
-                        result.items != null)
+                        result.items != null &&
+                        result.items.Count > 0)
                     {
                         this.TopPosts.Clear();
 
@@ -118,7 +128,8 @@ namespace HackerNews
                     this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
                     if (result != null &&
-                        result.items != null)
+                        result.items != null &&
+                        result.items.Count > 0)
                     {
                         this.NewPosts.Clear();
 
@@ -150,7 +161,8 @@ namespace HackerNews
                     this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
                     if (result != null &&
-                        result.items != null)
+                        result.items != null &&
+                        result.items.Count > 0)
                     {
                         this.AskPosts.Clear();
 
@@ -186,6 +198,10 @@ namespace HackerNews
                 browser.Uri = new Uri(item.url);
 
                 browser.Show();
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/CommentsPage.xaml?id=" + item.item_id, UriKind.Relative));
             }
         }
 
