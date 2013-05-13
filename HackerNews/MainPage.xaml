@@ -20,7 +20,7 @@
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstTopItems" ItemsSource="{Binding TopItems}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -40,14 +40,14 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtTopItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
-                    <TextBlock x:Name="txtTopItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtTopPostsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtTopPostsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                 </Grid>
             </phone:PivotItem>
             
             <phone:PivotItem Header="new">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstNewItems" ItemsSource="{Binding NewItems}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -67,14 +67,14 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtNewItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
-                    <TextBlock x:Name="txtNewItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtNewPostsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtNewPostsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                 </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem Header="ask">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstAskItems" ItemsSource="{Binding AskItems}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -94,8 +94,8 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtAskItemsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
-                    <TextBlock x:Name="txtAskItemsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtAskPostsLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtAskPostsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="Sorry, could not download more posts." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>

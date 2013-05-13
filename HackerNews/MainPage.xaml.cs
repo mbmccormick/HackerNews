@@ -20,31 +20,31 @@ namespace HackerNews
     {
         #region List Properties
 
-        public static readonly DependencyProperty TopItemsProperty =
-               DependencyProperty.Register("TopItems", typeof(ObservableCollection<Item>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Item>()));
+        public static readonly DependencyProperty TopPostsProperty =
+               DependencyProperty.Register("TopPosts", typeof(ObservableCollection<Post>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Post>()));
 
-        public ObservableCollection<Item> TopItems
+        public ObservableCollection<Post> TopPosts
         {
-            get { return (ObservableCollection<Item>)GetValue(TopItemsProperty); }
-            set { SetValue(TopItemsProperty, value); }
+            get { return (ObservableCollection<Post>)GetValue(TopPostsProperty); }
+            set { SetValue(TopPostsProperty, value); }
         }
 
-        public static readonly DependencyProperty NewItemsProperty =
-               DependencyProperty.Register("NewItems", typeof(ObservableCollection<Item>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Item>()));
+        public static readonly DependencyProperty NewPostsProperty =
+               DependencyProperty.Register("NewPosts", typeof(ObservableCollection<Post>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Post>()));
 
-        public ObservableCollection<Item> NewItems
+        public ObservableCollection<Post> NewPosts
         {
-            get { return (ObservableCollection<Item>)GetValue(NewItemsProperty); }
-            set { SetValue(NewItemsProperty, value); }
+            get { return (ObservableCollection<Post>)GetValue(NewPostsProperty); }
+            set { SetValue(NewPostsProperty, value); }
         }
 
-        public static readonly DependencyProperty AskItemsProperty =
-               DependencyProperty.Register("AskItems", typeof(ObservableCollection<Item>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Item>()));
+        public static readonly DependencyProperty AskPostsProperty =
+               DependencyProperty.Register("AskPosts", typeof(ObservableCollection<Post>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Post>()));
 
-        public ObservableCollection<Item> AskItems
+        public ObservableCollection<Post> AskPosts
         {
-            get { return (ObservableCollection<Item>)GetValue(AskItemsProperty); }
-            set { SetValue(AskItemsProperty, value); }
+            get { return (ObservableCollection<Post>)GetValue(AskPostsProperty); }
+            set { SetValue(AskPostsProperty, value); }
         }
 
         #endregion
@@ -57,6 +57,10 @@ namespace HackerNews
         {
             InitializeComponent();
 
+            this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
             LoadData();
         }
 
@@ -66,41 +70,36 @@ namespace HackerNews
             newLoaded = false;
             askLoaded = false;
 
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
 
             SmartDispatcher.BeginInvoke(() =>
             {
-                TopItems.Clear();
-                NewItems.Clear();
-                AskItems.Clear();
-
-                this.txtTopItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtNewItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtAskItemsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-
-                this.txtTopItemsLoading.Visibility = System.Windows.Visibility.Visible;
-                this.txtNewItemsLoading.Visibility = System.Windows.Visibility.Visible;
-                this.txtAskItemsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
 
-            ServiceClient.GetTopItems((result) =>
+            ServiceClient.GetTopPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    this.txtTopItemsLoading.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                    if (result != null)
+                    if (result != null &&
+                        result.items != null)
                     {
-                        this.TopItems.Clear();
+                        this.TopPosts.Clear();
 
-                        foreach (Item item in result.items)
+                        foreach (Post item in result.items)
                         {
-                            this.TopItems.Add(item);
+                            this.TopPosts.Add(item);
                         }
+
+                        this.TopPosts.RemoveAt(this.TopPosts.Count - 1);
                     }
                     else
                     {
-                        this.txtTopItemsEmpty.Visibility = System.Windows.Visibility.Visible;
+                        this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Visible;
                     }
 
                     topLoaded = true;
@@ -112,24 +111,27 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetNewItems((result) =>
+            ServiceClient.GetNewPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    this.txtNewItemsLoading.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                    if (result != null)
+                    if (result != null &&
+                        result.items != null)
                     {
-                        this.NewItems.Clear();
+                        this.NewPosts.Clear();
 
-                        foreach (Item item in result.items)
+                        foreach (Post item in result.items)
                         {
-                            this.NewItems.Add(item);
+                            this.NewPosts.Add(item);
                         }
+
+                        this.NewPosts.RemoveAt(this.NewPosts.Count - 1);
                     }
                     else
                     {
-                        this.txtNewItemsEmpty.Visibility = System.Windows.Visibility.Visible;
+                        this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Visible;
                     }
 
                     newLoaded = true;
@@ -141,24 +143,27 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetAskItems((result) =>
+            ServiceClient.GetAskPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    this.txtAskItemsLoading.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                    if (result != null)
+                    if (result != null &&
+                        result.items != null)
                     {
-                        this.AskItems.Clear();
+                        this.AskPosts.Clear();
 
-                        foreach (Item item in result.items)
+                        foreach (Post item in result.items)
                         {
-                            this.AskItems.Add(item);
+                            this.AskPosts.Add(item);
                         }
+
+                        this.AskPosts.RemoveAt(this.AskPosts.Count - 1);
                     }
                     else
                     {
-                        this.txtAskItemsEmpty.Visibility = System.Windows.Visibility.Visible;
+                        this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
                     }
 
                     askLoaded = true;
@@ -173,7 +178,7 @@ namespace HackerNews
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Item item = ((FrameworkElement)sender).DataContext as Item;
+            Post item = ((FrameworkElement)sender).DataContext as Post;
 
             if (item.url.StartsWith("http") == true)
             {

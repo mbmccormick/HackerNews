@@ -84,8 +84,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common\AsyncState.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentResponse.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostResponse.cs" />
     <Compile Include="ServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HackerNews.API.Models
 {
-    public class Response
+    public class CommentResponse
     {
-        public List<Item> items { get; set; }
+        public List<Comment> items { get; set; }
     }
 }

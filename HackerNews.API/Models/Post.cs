@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HackerNews.API.Models
 {
-    public class Item
+    public class Post
     {
         public string title { get; set; }
         public string url { get; set; }
@@ -21,7 +21,7 @@ namespace HackerNews.API.Models
         {
             get
             {
-                return "Posted " + time + " by " + user;
+                return score + ", posted " + time;
             }
         }
     }

@@ -117,7 +117,7 @@ namespace HackerNews.Common
 
             if (_mangoIndicator != null)
             {
-                _mangoIndicator.IsIndeterminate = _loading || IsDataManagerLoading;
+                // _mangoIndicator.IsIndeterminate = _loading || IsDataManagerLoading;
 
                 if (_loading == false)
                     _mangoIndicator.Text = null;
