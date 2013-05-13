@@ -24,5 +24,20 @@ namespace HackerNews.API.Models
                 return score + ", posted " + time;
             }
         }
+
+        public int commentCount
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToInt32(comments.Split(' ')[0]);
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }
