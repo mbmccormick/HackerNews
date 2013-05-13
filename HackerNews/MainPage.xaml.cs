@@ -12,6 +12,7 @@ using HackerNews.API.Models;
 using System.Collections.ObjectModel;
 using HackerNews.Common;
 using Microsoft.Phone.Tasks;
+using System.Windows.Media;
 
 namespace HackerNews
 {
@@ -82,9 +83,7 @@ namespace HackerNews
                 this.txtAskItemsLoading.Visibility = System.Windows.Visibility.Visible;
             });
 
-            ServiceClient client = new ServiceClient();
-
-            client.GetTopItems((result) =>
+            ServiceClient.GetTopItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -113,7 +112,7 @@ namespace HackerNews
                 });
             });
 
-            client.GetNewItems((result) =>
+            ServiceClient.GetNewItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -142,7 +141,7 @@ namespace HackerNews
                 });
             });
 
-            client.GetAskItems((result) =>
+            ServiceClient.GetAskItems((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -176,10 +175,13 @@ namespace HackerNews
         {
             Item item = ((FrameworkElement)sender).DataContext as Item;
 
-            WebBrowserTask browser = new WebBrowserTask();
-            browser.Uri = new Uri(item.url);
+            if (item.url.StartsWith("http") == true)
+            {
+                WebBrowserTask browser = new WebBrowserTask();
+                browser.Uri = new Uri(item.url);
 
-            browser.Show();
+                browser.Show();
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

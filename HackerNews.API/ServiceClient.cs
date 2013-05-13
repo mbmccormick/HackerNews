@@ -19,9 +19,9 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        public void GetTopItems(Action<Response> callback)
+        public static void GetTopItems(Action<Response> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/page") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/news") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -53,9 +53,9 @@ namespace HackerNews.API
             }, state);
         }
 
-        public void GetNewItems(Action<Response> callback)
+        public static void GetNewItems(Action<Response> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/new") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/newest") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -87,9 +87,9 @@ namespace HackerNews.API
             }, state);
         }
 
-        public void GetAskItems(Action<Response> callback)
+        public static void GetAskItems(Action<Response> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/ask") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/ask") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();

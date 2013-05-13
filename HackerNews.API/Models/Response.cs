@@ -8,9 +8,6 @@ namespace HackerNews.API.Models
 {
     public class Response
     {
-        public object nextId { get; set; }
         public List<Item> items { get; set; }
-        public string version { get; set; }
-        public DateTime cachedOnUTC { get; set; }
     }
 }

@@ -16,8 +16,8 @@
     shell:SystemTray.ForegroundColor="#FF000000"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">        
-        <phone:Pivot Title="HACKER NEWS" Foreground="Black">            
+    <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">
+        <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
                     <ListBox x:Name="lstTopItems" ItemsSource="{Binding TopItems}" Margin="0,0,0,0" Foreground="Black">

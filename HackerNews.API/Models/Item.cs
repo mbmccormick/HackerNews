@@ -10,17 +10,18 @@ namespace HackerNews.API.Models
     {
         public string title { get; set; }
         public string url { get; set; }
-        public int id { get; set; }
-        public int commentCount { get; set; }
-        public int points { get; set; }
-        public string postedAgo { get; set; }
-        public string postedBy { get; set; }
+        public string score { get; set; }
+        public string user { get; set; }
+        public string comments { get; set; }
+        public string time { get; set; }
+        public string item_id { get; set; }
+        public string description { get; set; }
 
-        public string description
+        public string body
         {
             get
             {
-                return "Posted " + postedAgo + " by " + postedBy;
+                return "Posted " + time + " by " + user;
             }
         }
     }
