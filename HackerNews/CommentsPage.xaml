@@ -15,7 +15,7 @@
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="#FFFF6600"
     shell:SystemTray.ForegroundColor="#FF000000"
-    toolkit:TiltEffect.IsTiltEnabled="True"
+    toolkit:TiltEffect.IsTiltEnabled="False"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">
@@ -35,13 +35,11 @@
                         </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="12,0,12,0">
-                                    <uc:CommentControl />
-                                </StackPanel>
+                                <uc:CommentControl Margin="12,0,12,0" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    
+
                     <TextBlock x:Name="txtLoading" Margin="12,-6,0,0" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                     <TextBlock x:Name="txtEmpty" Margin="12,-6,0,0" Visibility="Collapsed" TextWrapping="Wrap" Text="There are no comments for this post yet." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
                 </Grid>

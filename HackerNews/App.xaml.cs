@@ -62,6 +62,11 @@ namespace HackerNews
             InitializePhoneApplication();
 
             HackerNewsClient = new ServiceClient();
+
+            Resources.Remove("PhoneAccentColor");
+            Resources.Add("PhoneAccentColor", Color.FromArgb(255, 255, 102, 0));
+
+            ((SolidColorBrush)Resources["PhoneAccentBrush"]).Color = Color.FromArgb(255, 255, 102, 0);
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)

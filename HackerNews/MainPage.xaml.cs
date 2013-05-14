@@ -43,7 +43,10 @@ namespace HackerNews
         {
             if (e.IsNavigationInitiator == false)
             {
-                LoadData();
+                if (topLoaded == false ||
+                    newLoaded == false ||
+                    askLoaded == false)
+                    LoadData();
             }
         }
 
@@ -139,7 +142,7 @@ namespace HackerNews
 
         private void About_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ToggleLoadingText()
@@ -173,13 +176,15 @@ namespace HackerNews
 
         private void ListBox_LayoutUpdated(object sender, EventArgs e)
         {
-            if (topLoaded && newLoaded && askLoaded)
+            if (topLoaded &&
+                newLoaded &&
+                askLoaded)
             {
                 ToggleLoadingText();
                 ToggleEmptyText();
 
                 GlobalLoading.Instance.IsLoading = false;
-            }            
+            }
         }
     }
 }

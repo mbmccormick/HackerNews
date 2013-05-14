@@ -35,9 +35,7 @@
                         </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="12,0,12,24">
-                                    <uc:PostControl />
-                                </StackPanel>
+                                <uc:PostControl Margin="12,0,12,24" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
