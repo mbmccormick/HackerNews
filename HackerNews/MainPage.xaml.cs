@@ -74,14 +74,6 @@ namespace HackerNews
                     }
 
                     topLoaded = true;
-
-                    if (topLoaded && newLoaded && askLoaded)
-                    {
-                        ToggleLoadingText();
-                        ToggleEmptyText();
-
-                        GlobalLoading.Instance.IsLoading = false;
-                    }
                 });
             });
 
@@ -104,14 +96,6 @@ namespace HackerNews
                     }
 
                     newLoaded = true;
-
-                    if (topLoaded && newLoaded && askLoaded)
-                    {
-                        ToggleLoadingText();
-                        ToggleEmptyText();
-
-                        GlobalLoading.Instance.IsLoading = false;
-                    }
                 });
             });
 
@@ -134,21 +118,28 @@ namespace HackerNews
                     }
 
                     askLoaded = true;
-
-                    if (topLoaded && newLoaded && askLoaded)
-                    {
-                        ToggleLoadingText();
-                        ToggleEmptyText();
-
-                        GlobalLoading.Instance.IsLoading = false;
-                    }
                 });
             });
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void Refresh_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void Feedback_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.To = "matt@mbmccormick.com";
+            emailComposeTask.Subject = "Hacker News Feedback";
+            emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
+            emailComposeTask.Show();
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void ToggleLoadingText()
@@ -178,6 +169,17 @@ namespace HackerNews
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void ListBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            if (topLoaded && newLoaded && askLoaded)
+            {
+                ToggleLoadingText();
+                ToggleEmptyText();
+
+                GlobalLoading.Instance.IsLoading = false;
+            }            
         }
     }
 }

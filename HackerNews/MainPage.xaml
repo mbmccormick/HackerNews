@@ -22,7 +22,7 @@
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" LayoutUpdated="ListBox_LayoutUpdated">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -49,7 +49,7 @@
             
             <phone:PivotItem Header="new">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" LayoutUpdated="ListBox_LayoutUpdated">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -76,7 +76,7 @@
 
             <phone:PivotItem Header="ask">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black">
+                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" LayoutUpdated="ListBox_LayoutUpdated">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -105,7 +105,11 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
-            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="btnRefresh_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="Refresh_Click" />
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
+                <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

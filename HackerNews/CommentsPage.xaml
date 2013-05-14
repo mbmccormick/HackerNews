@@ -50,8 +50,11 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
-            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="btnRefresh_Click" />
+        <shell:ApplicationBar IsVisible="True" Mode="Minimized" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
+                <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

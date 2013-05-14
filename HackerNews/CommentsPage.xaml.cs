@@ -67,9 +67,19 @@ namespace HackerNews
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void Feedback_Click(object sender, EventArgs e)
         {
-            LoadData();
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.To = "matt@mbmccormick.com";
+            emailComposeTask.Subject = "Hacker News Feedback";
+            emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
+            emailComposeTask.Show();
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void ToggleLoadingText()
