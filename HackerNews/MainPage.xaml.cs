@@ -153,37 +153,31 @@ namespace HackerNews
 
         private void ToggleLoadingText()
         {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                this.lstTopPosts.Visibility = System.Windows.Visibility.Visible;
-                this.lstNewPosts.Visibility = System.Windows.Visibility.Visible;
-                this.lstAskPosts.Visibility = System.Windows.Visibility.Visible;
-            });
+            this.lstTopPosts.Visibility = System.Windows.Visibility.Visible;
+            this.lstNewPosts.Visibility = System.Windows.Visibility.Visible;
+            this.lstAskPosts.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void ToggleEmptyText()
         {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                if (this.TopPosts.Count == 0)
-                    this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            if (this.TopPosts.Count == 0)
+                this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (this.NewPosts.Count == 0)
-                    this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            if (this.NewPosts.Count == 0)
+                this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (this.AskPosts.Count == 0)
-                    this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-            });
+            if (this.AskPosts.Count == 0)
+                this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }
