@@ -9,25 +9,25 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid>
+    <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="54" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel x:Name="LayoutRoot" Background="Transparent">
+
+        <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostControl_Tap">
             <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
             <TextBlock Text="{Binding body}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" />
         </StackPanel>
 
-        <Canvas Grid.Column="1">
+        <Canvas Grid.Column="1" Tap="CommentControl_Tap" Margin="0,-8,-6,0">
             <Canvas x:Name="Captions" />
             <Canvas x:Name="Layer_4">
-                <Path Fill="#FFAAAAAA" Data="F1 M7,8.5L7,33.5 12.5,33.5 12.5,41.7315 25.4185,33.5 43,33.5 43,8.5z" />
+                <Path Fill="#FFBBBBBB" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
             </Canvas>
         </Canvas>
 
-        <TextBlock Grid.Column="1" Text="{Binding commentCount}" HorizontalAlignment="Center" Margin="0,7,0,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" />
+        <TextBlock Grid.Column="1" Text="{Binding commentCount}" HorizontalAlignment="Center" Margin="0,4,-6,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" Tap="CommentControl_Tap" />
     </Grid>
 
 </UserControl>

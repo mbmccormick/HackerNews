@@ -159,8 +159,13 @@ namespace HackerNews.API
                     tr.Close();
                     sr.Close();
 
-                    foreach (var item in data.items)
-                        item.comment = CleanText(item.comment);
+                    int i = data.items.Count - 1;
+
+                    while (i >= 0)
+                    {
+                        data.items[i] = CleanCommentText(data.items[i]);
+                        i--;
+                    }
 
                     callback(data);
                 }
@@ -174,15 +179,25 @@ namespace HackerNews.API
 
         private static string CleanText(string input)
         {
-            string output = input;
+            input = input.Replace("�", "");
+            input = input.Replace("&euro;&trade;", "'");
+            input = input.Replace("&euro;&oelig;", "\"");
+            input = input.Replace("&euro;?", "\"");
+            input = input.Replace("&euro;&ldquo;", "-");
+            input = input.Replace("__BR__", "\n\n");
+            input = input.Replace("\\", "");
 
-            output = output.Replace("�", "");
-            output = output.Replace("&euro;&trade;", "'");
-            output = output.Replace("&euro;&oelig;", "\"");
-            output = output.Replace("&euro;?", "\"");
-            output = output.Replace("&euro;&ldquo;", "-");
+            return input;
+        }
 
-            return output;
+        private static Comment CleanCommentText(Comment input)
+        {
+            input.comment = CleanText(input.comment);
+
+            foreach (var item in input.children)
+                CleanText(CleanCommentText(item).comment);
+
+            return input;
         }
     }
 }

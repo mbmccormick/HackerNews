@@ -20,20 +20,15 @@ namespace HackerNews
     {
         #region List Properties
 
-        public static readonly DependencyProperty CommentsProperty =
-               DependencyProperty.Register("Comments", typeof(ObservableCollection<Comment>), typeof(CommentsPage), new PropertyMetadata(new ObservableCollection<Comment>()));
-
-        public ObservableCollection<Comment> Comments
-        {
-            get { return (ObservableCollection<Comment>)GetValue(CommentsProperty); }
-            set { SetValue(CommentsProperty, value); }
-        }
+        public ObservableCollection<Comment> Comments { get; set; }
 
         #endregion
 
         public CommentsPage()
         {
             InitializeComponent();
+
+            this.Comments = new ObservableCollection<Comment>();
 
             this.Loaded += CommentsPage_Loaded;
         }
@@ -48,7 +43,7 @@ namespace HackerNews
             string id;
             if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
-                GlobalLoading.Instance.IsLoadingText("Loading...");
+                GlobalLoading.Instance.IsLoading = true;
 
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -75,6 +70,8 @@ namespace HackerNews
                         {
                             this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                         }
+
+                        this.lstComments.Visibility = System.Windows.Visibility.Visible;
 
                         GlobalLoading.Instance.IsLoading = false;
                     });
