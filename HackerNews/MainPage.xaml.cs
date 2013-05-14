@@ -54,9 +54,7 @@ namespace HackerNews
         {
             topLoaded = false;
             newLoaded = false;
-            askLoaded = false;
-
-            
+            askLoaded = false;           
 
             GlobalLoading.Instance.IsLoading = true;
 
