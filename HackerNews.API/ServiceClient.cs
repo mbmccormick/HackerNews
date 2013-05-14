@@ -2,6 +2,7 @@
 using HackerNews.API.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -19,7 +20,18 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        public static void GetTopPosts(Action<PostResponse> callback)
+        public List<string> PostHistory;
+        public int MaxPostHistory = 200;
+
+        public ServiceClient()
+        {
+            PostHistory = IsolatedStorageHelper.GetObject<List<string>>("PostHistory");
+
+            if (PostHistory == null)
+                PostHistory = new List<string>();
+        }
+
+        public void GetTopPosts(Action<PostResponse> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/news") as HttpWebRequest;
             request.Accept = "application/json";
@@ -56,7 +68,7 @@ namespace HackerNews.API
             }, state);
         }
 
-        public static void GetNewPosts(Action<PostResponse> callback)
+        public void GetNewPosts(Action<PostResponse> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/newest") as HttpWebRequest;
             request.Accept = "application/json";
@@ -98,7 +110,7 @@ namespace HackerNews.API
             }, state);
         }
 
-        public static void GetAskPosts(Action<PostResponse> callback)
+        public void GetAskPosts(Action<PostResponse> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/ask") as HttpWebRequest;
             request.Accept = "application/json";
@@ -135,7 +147,7 @@ namespace HackerNews.API
             }, state);
         }
 
-        public static void GetComments(Action<CommentResponse> callback, string postId)
+        public void GetComments(Action<CommentResponse> callback, string postId)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/nestedcomments/format/json/id/" + postId) as HttpWebRequest;
             request.Accept = "application/json";
@@ -177,20 +189,37 @@ namespace HackerNews.API
             }, state);
         }
 
-        private static string CleanText(string input)
+        public void MarkPostAsRead(string postId)
+        {
+            while (PostHistory.Count >= MaxPostHistory)
+            {
+                PostHistory.RemoveAt(MaxPostHistory - 1);
+            }
+
+            PostHistory.Insert(0, postId);
+        }
+
+        public void SaveData()
+        {
+            IsolatedStorageHelper.SaveObject<List<string>>("PostHistory", PostHistory);
+        }
+
+        private string CleanText(string input)
         {
             input = input.Replace("�", "");
+            input = input.Replace("&amp;", "");
             input = input.Replace("&euro;&trade;", "'");
             input = input.Replace("&euro;&oelig;", "\"");
             input = input.Replace("&euro;?", "\"");
             input = input.Replace("&euro;&ldquo;", "-");
+            input = input.Replace("&euro;", "...");
             input = input.Replace("__BR__", "\n\n");
             input = input.Replace("\\", "");
 
             return input;
         }
 
-        private static Comment CleanCommentText(Comment input)
+        private Comment CleanCommentText(Comment input)
         {
             input.comment = CleanText(input.comment);
 

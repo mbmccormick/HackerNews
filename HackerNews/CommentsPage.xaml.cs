@@ -29,11 +29,9 @@ namespace HackerNews
             InitializeComponent();
 
             this.Comments = new ObservableCollection<Comment>();
-
-            this.Loaded += CommentsPage_Loaded;
         }
 
-        private void CommentsPage_Loaded(object sender, EventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             LoadData();
         }
@@ -45,17 +43,10 @@ namespace HackerNews
             {
                 GlobalLoading.Instance.IsLoading = true;
 
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                });
-
-                ServiceClient.GetComments((result) =>
+                App.HackerNewsClient.GetComments((result) =>
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
-                        this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
-
                         if (result != null &&
                             result.items != null)
                         {
@@ -66,12 +57,9 @@ namespace HackerNews
                                 this.Comments.Add(item);
                             }
                         }
-                        else
-                        {
-                            this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
-                        }
 
-                        this.lstComments.Visibility = System.Windows.Visibility.Visible;
+                        ToggleLoadingText();
+                        ToggleEmptyText();
 
                         GlobalLoading.Instance.IsLoading = false;
                     });
@@ -82,6 +70,27 @@ namespace HackerNews
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void ToggleLoadingText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+
+                this.lstComments.Visibility = System.Windows.Visibility.Visible;
+            });
+        }
+
+        private void ToggleEmptyText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if (this.Comments.Count == 0)
+                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
     }
 }

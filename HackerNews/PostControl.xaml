@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostControl_Tap">
-            <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
+            <TextBlock Name="txtTitle" Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
             <TextBlock Text="{Binding body}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" />
         </StackPanel>
 

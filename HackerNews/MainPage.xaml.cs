@@ -37,17 +37,14 @@ namespace HackerNews
             this.TopPosts = new ObservableCollection<Post>();
             this.NewPosts = new ObservableCollection<Post>();
             this.AskPosts = new ObservableCollection<Post>();
-
-            this.Loaded += MainPage_Loaded;
         }
 
-        private void MainPage_Loaded(object sender, EventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
-
-            LoadData();
+            if (e.IsNavigationInitiator == false)
+            {
+                LoadData();
+            }
         }
 
         private void LoadData()
@@ -58,7 +55,7 @@ namespace HackerNews
 
             GlobalLoading.Instance.IsLoading = true;
 
-            ServiceClient.GetTopPosts((result) =>
+            App.HackerNewsClient.GetTopPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -88,7 +85,7 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetNewPosts((result) =>
+            App.HackerNewsClient.GetNewPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -118,7 +115,7 @@ namespace HackerNews
                 });
             });
 
-            ServiceClient.GetAskPosts((result) =>
+            App.HackerNewsClient.GetAskPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
