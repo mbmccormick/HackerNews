@@ -56,6 +56,8 @@ namespace HackerNews
             newLoaded = false;
             askLoaded = false;
 
+            
+
             GlobalLoading.Instance.IsLoading = true;
 
             App.HackerNewsClient.GetTopPosts((result) =>
@@ -154,6 +156,27 @@ namespace HackerNews
             this.lstTopPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstNewPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstAskPosts.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ResetEmptyText()
+        {
+            if (this.txtTopPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+            {
+                this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            if (this.txtNewPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+            {
+                this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            if (this.txtAskPostsEmpty.Visibility == System.Windows.Visibility.Visible)
+            {
+                this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         private void ToggleEmptyText()
