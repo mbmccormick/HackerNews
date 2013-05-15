@@ -26,7 +26,7 @@ namespace HackerNews
         {
             Post item = this.DataContext as Post;
 
-            if (App.HackerNewsClient.PostHistory.Contains(item.item_id) == true)
+            if (App.HackerNewsClient.PostHistory.Contains(item.id) == true)
             {
                 this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
             }
@@ -45,10 +45,10 @@ namespace HackerNews
             }
             else
             {
-                App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.item_id, UriKind.Relative));
+                App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
             }
 
-            App.HackerNewsClient.MarkPostAsRead(item.item_id);
+            App.HackerNewsClient.MarkPostAsRead(item.id);
 
             this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
         }
@@ -57,7 +57,7 @@ namespace HackerNews
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
-            App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.item_id, UriKind.Relative));
+            App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
         }
     }
 }

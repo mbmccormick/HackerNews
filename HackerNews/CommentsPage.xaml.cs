@@ -24,12 +24,6 @@ namespace HackerNews
 
         #endregion
 
-        #region Item Properties
-
-        public static Post CurrentPost { get; set; }
-
-        #endregion
-
         public CommentsPage()
         {
             InitializeComponent();
@@ -49,28 +43,19 @@ namespace HackerNews
             {
                 GlobalLoading.Instance.IsLoading = true;
 
-                if (PostsPage.TopPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = PostsPage.TopPosts.Single<Post>(z => z.item_id == id);
-
-                if (PostsPage.NewPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = PostsPage.NewPosts.Single<Post>(z => z.item_id == id);
-
-                if (PostsPage.AskPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = PostsPage.AskPosts.Single<Post>(z => z.item_id == id);
-
-                this.txtTitle.Text = CurrentPost.title;
-                this.txtBody.Text = CurrentPost.longBody;
-
                 App.HackerNewsClient.GetComments((result) =>
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
                         if (result != null &&
-                            result.items != null)
+                            result.comments != null)
                         {
+                            this.txtTitle.Text = result.title;
+                            this.txtBody.Text = result.description;
+
                             Comments.Clear();
 
-                            foreach (Comment item in result.items)
+                            foreach (Comment item in result.comments)
                             {
                                 Comments.Add(item);
                             }

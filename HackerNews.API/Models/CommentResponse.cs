@@ -8,6 +8,19 @@ namespace HackerNews.API.Models
 {
     public class CommentResponse
     {
-        public List<Comment> items { get; set; }
+        public string id { get; set; }
+        public string title { get; set; }
+        public string url { get; set; }
+        public string domain { get; set; }
+        public string description { get; set; }
+        public int points { get; set; }
+        public string user { get; set; }
+        public string time_ago { get; set; }
+        public int comments_count { get; set; }
+        public object content { get; set; }
+        public object poll { get; set; }
+        public string type { get; set; }
+        public List<Comment> comments { get; set; }
+        public object more_comments_id { get; set; }
     }
 }

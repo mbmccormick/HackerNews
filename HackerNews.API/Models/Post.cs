@@ -9,44 +9,15 @@ namespace HackerNews.API.Models
 {
     public class Post
     {
+        public string id { get; set; }
         public string title { get; set; }
         public string url { get; set; }
-        public string score { get; set; }
-        public string user { get; set; }
-        public string comments { get; set; }
-        public string time { get; set; }
-        public string item_id { get; set; }
+        public string domain { get; set; }
         public string description { get; set; }
-
-        public string body
-        {
-            get
-            {
-                return score + ", posted " + time;
-            }
-        }
-
-        public string longBody
-        {
-            get
-            {
-                return score + ", posted " + time + " by " + user;
-            }
-        }
-
-        public int commentCount
-        {
-            get
-            {
-                try
-                {
-                    return Convert.ToInt32(comments.Split(' ')[0]);
-                }
-                catch (Exception ex)
-                {
-                    return 0;
-                }
-            }
-        }
+        public int points { get; set; }
+        public string user { get; set; }
+        public string time_ago { get; set; }
+        public int comments_count { get; set; }
+        public string type { get; set; }
     }
 }

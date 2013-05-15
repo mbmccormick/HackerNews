@@ -31,9 +31,9 @@ namespace HackerNews.API
                 PostHistory = new List<string>();
         }
 
-        public void GetTopPosts(Action<PostResponse> callback)
+        public void GetTopPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/news") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/news") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -50,12 +50,12 @@ namespace HackerNews.API
                     StreamReader sr = new StreamReader(stream, encoding);
 
                     JsonTextReader tr = new JsonTextReader(sr);
-                    PostResponse data = new JsonSerializer().Deserialize<PostResponse>(tr);
+                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                     tr.Close();
                     sr.Close();
 
-                    foreach (var item in data.items)
+                    foreach (var item in data)
                         item.title = CleanText(item.title);
 
                     callback(data);
@@ -68,9 +68,9 @@ namespace HackerNews.API
             }, state);
         }
 
-        public void GetNewPosts(Action<PostResponse> callback)
+        public void GetNewPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/newest") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/newest") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -87,18 +87,13 @@ namespace HackerNews.API
                     StreamReader sr = new StreamReader(stream, encoding);
 
                     JsonTextReader tr = new JsonTextReader(sr);
-                    PostResponse data = new JsonSerializer().Deserialize<PostResponse>(tr);
+                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                     tr.Close();
                     sr.Close();
 
-                    foreach (var item in data.items)
+                    foreach (var item in data)
                         item.title = CleanText(item.title);
-
-                    // TODO: fix this on the server side
-                    foreach (var item in data.items)
-                        if (item.time != null)
-                            item.time = item.time.Replace("0 minutes ago", "just now");
 
                     callback(data);
                 }
@@ -110,9 +105,9 @@ namespace HackerNews.API
             }, state);
         }
 
-        public void GetAskPosts(Action<PostResponse> callback)
+        public void GetAskPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/ask") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/ask") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -129,12 +124,12 @@ namespace HackerNews.API
                     StreamReader sr = new StreamReader(stream, encoding);
 
                     JsonTextReader tr = new JsonTextReader(sr);
-                    PostResponse data = new JsonSerializer().Deserialize<PostResponse>(tr);
+                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                     tr.Close();
                     sr.Close();
 
-                    foreach (var item in data.items)
+                    foreach (var item in data)
                         item.title = CleanText(item.title);
 
                     callback(data);
@@ -149,7 +144,7 @@ namespace HackerNews.API
 
         public void GetComments(Action<CommentResponse> callback, string postId)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.appspot.com/nestedcomments/format/json/id/" + postId) as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/item/" + postId) as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -171,11 +166,11 @@ namespace HackerNews.API
                     tr.Close();
                     sr.Close();
 
-                    int i = data.items.Count - 1;
+                    int i = data.comments.Count - 1;
 
                     while (i >= 0)
                     {
-                        data.items[i] = CleanCommentText(data.items[i]);
+                        data.comments[i] = CleanCommentText(data.comments[i]);
                         i--;
                     }
 
@@ -222,10 +217,10 @@ namespace HackerNews.API
 
         private Comment CleanCommentText(Comment input)
         {
-            input.comment = CleanText(input.comment);
+            input.content = CleanText(input.content);
 
-            foreach (var item in input.children)
-                CleanText(CleanCommentText(item).comment);
+            foreach (var item in input.comments)
+                CleanText(CleanCommentText(item).content);
 
             return input;
         }

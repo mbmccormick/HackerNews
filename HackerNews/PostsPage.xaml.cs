@@ -63,17 +63,14 @@ namespace HackerNews
                 SmartDispatcher.BeginInvoke(() =>
                 {
                     if (result != null &&
-                        result.items != null &&
-                        result.items.Count > 0)
+                        result.Count > 0)
                     {
                         TopPosts.Clear();
 
-                        foreach (Post item in result.items)
+                        foreach (Post item in result)
                         {
                             TopPosts.Add(item);
                         }
-
-                        TopPosts.RemoveAt(TopPosts.Count - 1);
                     }
 
                     topLoaded = true;
@@ -95,17 +92,14 @@ namespace HackerNews
                 SmartDispatcher.BeginInvoke(() =>
                 {
                     if (result != null &&
-                        result.items != null &&
-                        result.items.Count > 0)
+                        result.Count > 0)
                     {
                         NewPosts.Clear();
 
-                        foreach (Post item in result.items)
+                        foreach (Post item in result)
                         {
                             NewPosts.Add(item);
                         }
-
-                        NewPosts.RemoveAt(NewPosts.Count - 1);
                     }
 
                     newLoaded = true;
@@ -127,17 +121,14 @@ namespace HackerNews
                 SmartDispatcher.BeginInvoke(() =>
                 {
                     if (result != null &&
-                        result.items != null &&
-                        result.items.Count > 0)
+                        result.Count > 0)
                     {
                         AskPosts.Clear();
 
-                        foreach (Post item in result.items)
+                        foreach (Post item in result)
                         {
                             AskPosts.Add(item);
                         }
-
-                        AskPosts.RemoveAt(AskPosts.Count - 1);
                     }
 
                     askLoaded = true;
