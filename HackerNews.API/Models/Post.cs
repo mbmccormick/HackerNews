@@ -26,6 +26,14 @@ namespace HackerNews.API.Models
             }
         }
 
+        public string longBody
+        {
+            get
+            {
+                return score + ", posted " + time + " by " + user;
+            }
+        }
+
         public int commentCount
         {
             get

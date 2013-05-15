@@ -26,7 +26,8 @@
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="HACKER NEWS" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="Black" />
-            <TextBlock Name="txtTitle" Text="comments" Margin="12,12,12,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
+            <TextBlock Name="txtTitle" Text="comments" Margin="12,24,12,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
+            <TextBlock Name="txtBody" Text="body" Margin="12,0,12,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">

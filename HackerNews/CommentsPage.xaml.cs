@@ -49,16 +49,17 @@ namespace HackerNews
             {
                 GlobalLoading.Instance.IsLoading = true;
 
-                if (MainPage.TopPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = MainPage.TopPosts.Single<Post>(z => z.item_id == id);
+                if (PostsPage.TopPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = PostsPage.TopPosts.Single<Post>(z => z.item_id == id);
 
-                if (MainPage.NewPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = MainPage.NewPosts.Single<Post>(z => z.item_id == id);
+                if (PostsPage.NewPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = PostsPage.NewPosts.Single<Post>(z => z.item_id == id);
 
-                if (MainPage.AskPosts.Where(z => z.item_id == id).Count() > 0)
-                    CurrentPost = MainPage.AskPosts.Single<Post>(z => z.item_id == id);
+                if (PostsPage.AskPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = PostsPage.AskPosts.Single<Post>(z => z.item_id == id);
 
                 this.txtTitle.Text = CurrentPost.title;
+                this.txtBody.Text = CurrentPost.longBody;
 
                 App.HackerNewsClient.GetComments((result) =>
                 {

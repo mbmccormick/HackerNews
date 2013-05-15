@@ -212,6 +212,7 @@ namespace HackerNews.API
             input = input.Replace("&euro;&oelig;", "\"");
             input = input.Replace("&euro;?", "\"");
             input = input.Replace("&euro;&ldquo;", "-");
+            input = input.Replace("&euro;&tilde;", "'");
             input = input.Replace("&euro;", "...");
             input = input.Replace("__BR__", "\n\n");
             input = input.Replace("\\", "");

@@ -16,7 +16,7 @@ using System.Windows.Media;
 
 namespace HackerNews
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class PostsPage : PhoneApplicationPage
     {
         #region List Properties
 
@@ -30,7 +30,7 @@ namespace HackerNews
         private bool newLoaded = false;
         private bool askLoaded = false;
 
-        public MainPage()
+        public PostsPage()
         {
             InitializeComponent();
 
