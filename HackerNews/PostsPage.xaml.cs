@@ -43,6 +43,8 @@ namespace HackerNews
         {
             if (e.IsNavigationInitiator == false)
             {
+                LittleWatson.CheckForPreviousException(true);
+
                 if (topLoaded == false ||
                     newLoaded == false ||
                     askLoaded == false)
@@ -155,7 +157,7 @@ namespace HackerNews
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
 
-            emailComposeTask.To = "matt@mbmccormick.com";
+            emailComposeTask.To = App.FeedbackEmailAddress;
             emailComposeTask.Subject = "Hacker News Feedback";
             emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
             emailComposeTask.Show();

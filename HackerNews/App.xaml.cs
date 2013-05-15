@@ -17,6 +17,7 @@ namespace HackerNews
     public partial class App : Application
     {
         public static ServiceClient HackerNewsClient;
+        public static string FeedbackEmailAddress = "matt@mbmccormick.com";
 
         public static string VersionNumber
         {
@@ -90,6 +91,8 @@ namespace HackerNews
 
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            LittleWatson.ReportException(e.Exception, "RootFrame_NavigationFailed()");
+
             if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
@@ -99,6 +102,15 @@ namespace HackerNews
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            LittleWatson.ReportException(e.ExceptionObject, null);
+
+            RootFrame.Dispatcher.BeginInvoke(() =>
+            {
+                LittleWatson.CheckForPreviousException(false);
+            });
+
+            e.Handled = true;
+
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger

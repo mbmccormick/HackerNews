@@ -89,7 +89,7 @@ namespace HackerNews
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
 
-            emailComposeTask.To = "matt@mbmccormick.com";
+            emailComposeTask.To = App.FeedbackEmailAddress;
             emailComposeTask.Subject = "Hacker News Feedback";
             emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
             emailComposeTask.Show();

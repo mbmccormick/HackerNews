@@ -100,6 +100,7 @@
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\GlobalLoading.cs" />
+    <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="PostControl.xaml.cs">
       <DependentUpon>PostControl.xaml</DependentUpon>
