@@ -20,9 +20,9 @@ namespace HackerNews
     {
         #region List Properties
 
-        public ObservableCollection<Post> TopPosts { get; set; }
-        public ObservableCollection<Post> NewPosts { get; set; }
-        public ObservableCollection<Post> AskPosts { get; set; }
+        public static ObservableCollection<Post> TopPosts { get; set; }
+        public static ObservableCollection<Post> NewPosts { get; set; }
+        public static ObservableCollection<Post> AskPosts { get; set; }
 
         #endregion
 
@@ -34,9 +34,9 @@ namespace HackerNews
         {
             InitializeComponent();
 
-            this.TopPosts = new ObservableCollection<Post>();
-            this.NewPosts = new ObservableCollection<Post>();
-            this.AskPosts = new ObservableCollection<Post>();
+            TopPosts = new ObservableCollection<Post>();
+            NewPosts = new ObservableCollection<Post>();
+            AskPosts = new ObservableCollection<Post>();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -66,14 +66,14 @@ namespace HackerNews
                         result.items != null &&
                         result.items.Count > 0)
                     {
-                        this.TopPosts.Clear();
+                        TopPosts.Clear();
 
                         foreach (Post item in result.items)
                         {
-                            this.TopPosts.Add(item);
+                            TopPosts.Add(item);
                         }
 
-                        this.TopPosts.RemoveAt(this.TopPosts.Count - 1);
+                        TopPosts.RemoveAt(TopPosts.Count - 1);
                     }
 
                     topLoaded = true;
@@ -88,14 +88,14 @@ namespace HackerNews
                         result.items != null &&
                         result.items.Count > 0)
                     {
-                        this.NewPosts.Clear();
+                        NewPosts.Clear();
 
                         foreach (Post item in result.items)
                         {
-                            this.NewPosts.Add(item);
+                            NewPosts.Add(item);
                         }
 
-                        this.NewPosts.RemoveAt(this.NewPosts.Count - 1);
+                        NewPosts.RemoveAt(NewPosts.Count - 1);
                     }
 
                     newLoaded = true;
@@ -110,14 +110,14 @@ namespace HackerNews
                         result.items != null &&
                         result.items.Count > 0)
                     {
-                        this.AskPosts.Clear();
+                        AskPosts.Clear();
 
                         foreach (Post item in result.items)
                         {
-                            this.AskPosts.Add(item);
+                            AskPosts.Add(item);
                         }
 
-                        this.AskPosts.RemoveAt(this.AskPosts.Count - 1);
+                        AskPosts.RemoveAt(AskPosts.Count - 1);
                     }
 
                     askLoaded = true;
@@ -179,17 +179,17 @@ namespace HackerNews
 
         private void ToggleEmptyText()
         {
-            if (this.TopPosts.Count == 0)
+            if (TopPosts.Count == 0)
                 this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            if (this.NewPosts.Count == 0)
+            if (NewPosts.Count == 0)
                 this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            if (this.AskPosts.Count == 0)
+            if (AskPosts.Count == 0)
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;

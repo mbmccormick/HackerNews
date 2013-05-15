@@ -20,7 +20,13 @@ namespace HackerNews
     {
         #region List Properties
 
-        public ObservableCollection<Comment> Comments { get; set; }
+        public static ObservableCollection<Comment> Comments { get; set; }
+
+        #endregion
+
+        #region Item Properties
+
+        public static Post CurrentPost { get; set; }
 
         #endregion
 
@@ -28,7 +34,7 @@ namespace HackerNews
         {
             InitializeComponent();
 
-            this.Comments = new ObservableCollection<Comment>();
+            Comments = new ObservableCollection<Comment>();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -43,6 +49,17 @@ namespace HackerNews
             {
                 GlobalLoading.Instance.IsLoading = true;
 
+                if (MainPage.TopPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = MainPage.TopPosts.Single<Post>(z => z.item_id == id);
+
+                if (MainPage.NewPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = MainPage.NewPosts.Single<Post>(z => z.item_id == id);
+
+                if (MainPage.AskPosts.Where(z => z.item_id == id).Count() > 0)
+                    CurrentPost = MainPage.AskPosts.Single<Post>(z => z.item_id == id);
+
+                this.txtTitle.Text = CurrentPost.title;
+
                 App.HackerNewsClient.GetComments((result) =>
                 {
                     SmartDispatcher.BeginInvoke(() =>
@@ -50,11 +67,11 @@ namespace HackerNews
                         if (result != null &&
                             result.items != null)
                         {
-                            this.Comments.Clear();
+                            Comments.Clear();
 
                             foreach (Comment item in result.items)
                             {
-                                this.Comments.Add(item);
+                                Comments.Add(item);
                             }
                         }
 
@@ -96,7 +113,7 @@ namespace HackerNews
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if (this.Comments.Count == 0)
+                if (Comments.Count == 0)
                     this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
