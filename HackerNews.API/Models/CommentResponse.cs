@@ -17,7 +17,7 @@ namespace HackerNews.API.Models
         public string user { get; set; }
         public string time_ago { get; set; }
         public int comments_count { get; set; }
-        public object content { get; set; }
+        public string content { get; set; }
         public object poll { get; set; }
         public string type { get; set; }
         public List<Comment> comments { get; set; }

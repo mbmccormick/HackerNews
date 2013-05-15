@@ -59,6 +59,21 @@ namespace HackerNews
                             {
                                 Comments.Add(item);
                             }
+
+                            if (result.content != null)
+                            {
+                                Comment data = new Comment();
+
+                                data.comments = null;
+                                data.content = result.content;
+                                data.id = null;
+                                data.level = 0;
+                                data.time_ago = result.time_ago;
+                                data.title = result.user + " " + result.time_ago;
+                                data.user = result.user;
+
+                                Comments.Insert(0, data);
+                            }
                         }
 
                         ToggleLoadingText();
