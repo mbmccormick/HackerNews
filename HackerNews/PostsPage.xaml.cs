@@ -54,7 +54,7 @@ namespace HackerNews
         {
             topLoaded = false;
             newLoaded = false;
-            askLoaded = false;           
+            askLoaded = false;
 
             GlobalLoading.Instance.IsLoading = true;
 
@@ -77,6 +77,16 @@ namespace HackerNews
                     }
 
                     topLoaded = true;
+
+                    if (topLoaded &&
+                        newLoaded &&
+                        askLoaded)
+                    {
+                        ToggleLoadingText();
+                        ToggleEmptyText();
+
+                        GlobalLoading.Instance.IsLoading = false;
+                    }
                 });
             });
 
@@ -99,6 +109,16 @@ namespace HackerNews
                     }
 
                     newLoaded = true;
+
+                    if (topLoaded &&
+                        newLoaded &&
+                        askLoaded)
+                    {
+                        ToggleLoadingText();
+                        ToggleEmptyText();
+
+                        GlobalLoading.Instance.IsLoading = false;
+                    }
                 });
             });
 
@@ -121,6 +141,16 @@ namespace HackerNews
                     }
 
                     askLoaded = true;
+
+                    if (topLoaded &&
+                        newLoaded &&
+                        askLoaded)
+                    {
+                        ToggleLoadingText();
+                        ToggleEmptyText();
+
+                        GlobalLoading.Instance.IsLoading = false;
+                    }
                 });
             });
         }
@@ -193,19 +223,6 @@ namespace HackerNews
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private void ListBox_LayoutUpdated(object sender, EventArgs e)
-        {
-            if (topLoaded &&
-                newLoaded &&
-                askLoaded)
-            {
-                ToggleLoadingText();
-                ToggleEmptyText();
-
-                GlobalLoading.Instance.IsLoading = false;
-            }
         }
     }
 }
