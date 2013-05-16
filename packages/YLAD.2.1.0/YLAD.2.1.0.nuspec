@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>YLAD</id>
+    <version>2.1.0</version>
+    <title>Your Last About Dialog</title>
+    <authors>Peter Kuhn</authors>
+    <owners>Peter Kuhn</owners>
+    <licenseUrl>http://www.opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>http://ylad.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Are you tired of recreating the same about dialog logic and content for each Windows Phone app every time? "Your Last About Dialog" is a robust and generic, highly configurable implementation you can easily pull into your own app and set up for your needs. It is able to pull most data from your application automatically, supports fetching both text and Xaml content from remote sources (with fallback local content), and allows styling as well as localization of the complete dialog content to all of the languages supported by your app.</description>
+    <summary>A generic, configurable and localizable about dialog implementation for Windows Phone apps.</summary>
+    <tags>Windows Phone, About dialog</tags>
+    <references>
+      <reference file="YourLastAboutDialog.dll" />
+    </references>
+  </metadata>
+</package>

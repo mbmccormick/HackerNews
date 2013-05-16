@@ -17,7 +17,7 @@ namespace HackerNews
     public partial class App : Application
     {
         public static ServiceClient HackerNewsClient;
-        public static string FeedbackEmailAddress = "matt@mbmccormick.com";
+        public static string FeedbackEmailAddress = "feedback@mbmccormick.com";
 
         public static string VersionNumber
         {
