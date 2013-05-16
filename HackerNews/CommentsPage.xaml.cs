@@ -41,7 +41,7 @@ namespace HackerNews
             string id;
             if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
-                GlobalLoading.Instance.IsLoading = true;
+                this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
                 App.HackerNewsClient.GetComments((result) =>
                 {
@@ -79,7 +79,7 @@ namespace HackerNews
                         ToggleLoadingText();
                         ToggleEmptyText();
 
-                        GlobalLoading.Instance.IsLoading = false;
+                        this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
                     });
                 }, id);
             }

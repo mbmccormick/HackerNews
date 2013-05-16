@@ -143,8 +143,6 @@ namespace HackerNews
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            GlobalLoading.Instance.Initialize(RootFrame);
-
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
         }

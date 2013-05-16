@@ -58,7 +58,7 @@ namespace HackerNews
             newLoaded = false;
             askLoaded = false;
 
-            GlobalLoading.Instance.IsLoading = true;
+            this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
             App.HackerNewsClient.GetTopPosts((result) =>
             {
@@ -84,7 +84,7 @@ namespace HackerNews
                         ToggleLoadingText();
                         ToggleEmptyText();
 
-                        GlobalLoading.Instance.IsLoading = false;
+                        this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
                     }
                 });
             });
@@ -113,7 +113,7 @@ namespace HackerNews
                         ToggleLoadingText();
                         ToggleEmptyText();
 
-                        GlobalLoading.Instance.IsLoading = false;
+                        this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
                     }
                 });
             });
@@ -142,7 +142,7 @@ namespace HackerNews
                         ToggleLoadingText();
                         ToggleEmptyText();
 
-                        GlobalLoading.Instance.IsLoading = false;
+                        this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
                     }
                 });
             });

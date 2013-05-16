@@ -20,6 +20,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">
+        <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
+
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
