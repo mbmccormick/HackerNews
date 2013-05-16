@@ -11,6 +11,7 @@ using HackerNews.API.Models;
 using System.Windows.Documents;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
+using Microsoft.Phone.Tasks;
 
 namespace HackerNews
 {
@@ -40,11 +41,11 @@ namespace HackerNews
 
             foreach (Match match in regEx.Matches(htmlFragment))
             {
-                if (match.Index > nextOffset)
+                if (match.Index >= nextOffset)
                 {
                     AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
                     nextOffset = match.Index + match.Length;
-                    AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value));
+                    AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
                 }
             }
 
@@ -86,10 +87,21 @@ namespace HackerNews
             var run = new Run { Text = text };
             var link = new Hyperlink { NavigateUri = uri };
 
+            link.Click += Hyperlink_Click;
             link.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 102, 0));
-
+            
             link.Inlines.Add(run);
             paragraph.Inlines.Add(link);
+        }
+
+        private static void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink item = sender as Hyperlink;
+
+            WebBrowserTask browser = new WebBrowserTask();
+            browser.Uri = new Uri(item.NavigateUri.AbsoluteUri, UriKind.Absolute);
+
+            browser.Show();
         }
     }
 }

@@ -68,6 +68,11 @@ namespace HackerNews
             Resources.Add("PhoneAccentColor", Color.FromArgb(255, 255, 102, 0));
 
             ((SolidColorBrush)Resources["PhoneAccentBrush"]).Color = Color.FromArgb(255, 255, 102, 0);
+
+            Resources.Remove("PhoneBackgroundColor");
+            Resources.Add("PhoneBackgroundColor", Color.FromArgb(255, 246, 246, 239));
+
+            ((SolidColorBrush)Resources["PhoneBackgroundBrush"]).Color = Color.FromArgb(255, 246, 246, 239);
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)
@@ -91,8 +96,6 @@ namespace HackerNews
 
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            LittleWatson.ReportException(e.Exception, "RootFrame_NavigationFailed()");
-
             if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger

@@ -13,8 +13,7 @@
 
     <StackPanel x:Name="LayoutRoot" Background="Transparent">
         <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
-        <!--<TextBlock Text="{Binding content}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" />-->
-        <RichTextBox Name="txtContent" TextWrapping="Wrap" Margin="-10,0,12,0" Foreground="#FF828282" />
+        <RichTextBox Name="txtContent" TextWrapping="Wrap" Margin="-11,0,12,0" Foreground="#FF828282" />
 
         <ListBox ItemsSource="{Binding comments}" Margin="12,12,0,0" Foreground="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
