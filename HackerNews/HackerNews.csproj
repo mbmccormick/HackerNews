@@ -99,6 +99,7 @@
     <Compile Include="CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="PostControl.xaml.cs">
