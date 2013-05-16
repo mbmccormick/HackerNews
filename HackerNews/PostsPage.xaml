@@ -23,7 +23,7 @@
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
+                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -48,7 +48,7 @@
 
             <phone:PivotItem Header="new">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
+                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -75,7 +75,7 @@
 
             <phone:PivotItem Header="ask">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
+                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />

@@ -33,7 +33,7 @@
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-12">
-            <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
+            <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Margin="0,0,0,24" />
