@@ -32,7 +32,7 @@
             <TextBlock Name="txtBody" Text="" Margin="12,0,24,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-12">
             <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
