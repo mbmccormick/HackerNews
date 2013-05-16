@@ -57,6 +57,8 @@ namespace HackerNews
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
+            if (item.type == "job") return;
+
             App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
         }
     }
