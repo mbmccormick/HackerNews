@@ -21,7 +21,7 @@
   <App Author="Matt McCormick"
        Publisher=""       
        AdditionalNotes="This application is not endorsed or certified by Hacker News or Y Combinator. Special thanks to Lim Chee Aun for the Hacker News API and Adhara Garcia for the application icon." 
-       Description="" />
+       Description=" " />
   <Items>
     <!-- Create a MainItem entry to configure the front page -->
     <!-- The Titel attribute defines the title of the pivot item -->
