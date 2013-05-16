@@ -11,6 +11,7 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
+    Background="#FFF6F6EF"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="#FFFF6600"
@@ -27,8 +28,8 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="HACKER NEWS" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="Black" />
             <TextBlock x:Name="txtLoading" Margin="12,12,0,0" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
-            <TextBlock Name="txtTitle" Text="" Margin="12,24,12,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
-            <TextBlock Name="txtBody" Text="" Margin="12,0,12,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
+            <TextBlock Name="txtTitle" Text="" Margin="12,24,24,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
+            <TextBlock Name="txtBody" Text="" Margin="12,0,24,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
