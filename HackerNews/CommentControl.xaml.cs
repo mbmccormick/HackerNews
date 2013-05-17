@@ -89,6 +89,7 @@ namespace HackerNews
 
             link.Click += Hyperlink_Click;
             link.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 102, 0));
+            link.MouseOverForeground = new SolidColorBrush(Color.FromArgb(255, 255, 102, 0));
             
             link.Inlines.Add(run);
             paragraph.Inlines.Add(link);
