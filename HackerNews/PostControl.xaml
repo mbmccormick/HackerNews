@@ -17,13 +17,13 @@
 
         <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostControl_Tap">
             <TextBlock Name="txtTitle" Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
-            <TextBlock Text="{Binding description}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" />
+            <TextBlock Name="txtDescription" Text="{Binding description}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" />
         </StackPanel>
 
         <Canvas Grid.Column="1" Tap="CommentControl_Tap" Margin="0,-8,-6,0">
             <Canvas x:Name="Captions" />
             <Canvas x:Name="Layer_4">
-                <Path Fill="#FFBBBBBB" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
+                <Path Name="pthCommentCount" Fill="#FFBBBBBB" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
             </Canvas>
         </Canvas>
 

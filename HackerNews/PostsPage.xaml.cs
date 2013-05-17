@@ -26,9 +26,9 @@ namespace HackerNews
 
         #endregion
 
-        private bool topLoaded = false;
-        private bool newLoaded = false;
-        private bool askLoaded = false;
+        private bool isTopLoaded = false;
+        private bool isNewLoaded = false;
+        private bool isAskLoaded = false;
 
         public PostsPage()
         {
@@ -45,19 +45,15 @@ namespace HackerNews
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                if (topLoaded == false ||
-                    newLoaded == false ||
-                    askLoaded == false)
+                if (isTopLoaded == false ||
+                    isNewLoaded == false ||
+                    isAskLoaded == false)
                     LoadData();
             }
         }
 
         private void LoadData()
         {
-            topLoaded = false;
-            newLoaded = false;
-            askLoaded = false;
-
             this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
             App.HackerNewsClient.GetTopPosts((result) =>
@@ -75,11 +71,11 @@ namespace HackerNews
                         }
                     }
 
-                    topLoaded = true;
+                    isTopLoaded = true;
 
-                    if (topLoaded &&
-                        newLoaded &&
-                        askLoaded)
+                    if (isTopLoaded &&
+                        isNewLoaded &&
+                        isAskLoaded)
                     {
                         ToggleLoadingText();
                         ToggleEmptyText();
@@ -104,11 +100,11 @@ namespace HackerNews
                         }
                     }
 
-                    newLoaded = true;
+                    isNewLoaded = true;
 
-                    if (topLoaded &&
-                        newLoaded &&
-                        askLoaded)
+                    if (isTopLoaded &&
+                        isNewLoaded &&
+                        isAskLoaded)
                     {
                         ToggleLoadingText();
                         ToggleEmptyText();
@@ -133,11 +129,11 @@ namespace HackerNews
                         }
                     }
 
-                    askLoaded = true;
+                    isAskLoaded = true;
 
-                    if (topLoaded &&
-                        newLoaded &&
-                        askLoaded)
+                    if (isTopLoaded &&
+                        isNewLoaded &&
+                        isAskLoaded)
                     {
                         ToggleLoadingText();
                         ToggleEmptyText();
@@ -150,6 +146,10 @@ namespace HackerNews
 
         private void Refresh_Click(object sender, EventArgs e)
         {
+            isTopLoaded = false;
+            isNewLoaded = false;
+            isAskLoaded = false;
+
             LoadData();
         }
 
@@ -177,27 +177,6 @@ namespace HackerNews
             this.lstTopPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstNewPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstAskPosts.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void ResetEmptyText()
-        {
-            if (this.txtTopPostsEmpty.Visibility == System.Windows.Visibility.Visible)
-            {
-                this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            }
-
-            if (this.txtNewPostsEmpty.Visibility == System.Windows.Visibility.Visible)
-            {
-                this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            }
-
-            if (this.txtAskPostsEmpty.Visibility == System.Windows.Visibility.Visible)
-            {
-                this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            }
         }
 
         private void ToggleEmptyText()

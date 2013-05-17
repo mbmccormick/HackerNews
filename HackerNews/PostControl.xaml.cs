@@ -29,6 +29,8 @@ namespace HackerNews
             if (App.HackerNewsClient.PostHistory.Contains(item.id) == true)
             {
                 this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
+                this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+                this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
             }
         }
 
@@ -51,6 +53,8 @@ namespace HackerNews
             App.HackerNewsClient.MarkPostAsRead(item.id);
 
             this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
+            this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+            this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
         }
 
         private void CommentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -58,6 +62,15 @@ namespace HackerNews
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
             if (item.type == "job") return;
+
+            if (item.type == "ask")
+            {
+                App.HackerNewsClient.MarkPostAsRead(item.id);
+
+                this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
+                this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+                this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+            }
 
             App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
         }

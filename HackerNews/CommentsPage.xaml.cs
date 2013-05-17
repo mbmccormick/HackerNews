@@ -24,6 +24,8 @@ namespace HackerNews
 
         #endregion
 
+        private bool isLoaded = false;
+
         public CommentsPage()
         {
             InitializeComponent();
@@ -33,7 +35,10 @@ namespace HackerNews
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            LoadData();
+            if (isLoaded == false)
+            {
+                LoadData();
+            }
         }
 
         private void LoadData()
@@ -75,6 +80,8 @@ namespace HackerNews
                                 Comments.Insert(0, data);
                             }
                         }
+
+                        isLoaded = true;
 
                         ToggleLoadingText();
                         ToggleEmptyText();
