@@ -59,6 +59,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
+            <shell:ApplicationBarIconButton IconUri="/Resources/Browser.png" Text="navigate" Click="Navigate_Click" />
             <shell:ApplicationBarIconButton IconUri="/Resources/Share.png" Text="share" Click="Share_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />

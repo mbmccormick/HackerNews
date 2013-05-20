@@ -96,6 +96,14 @@ namespace HackerNews
             }
         }
 
+        private void Navigate_Click(object sender, EventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+
+            webBrowserTask.Uri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
+            webBrowserTask.Show();
+        }
+
         private void Share_Click(object sender, EventArgs e)
         {
             ShareLinkTask shareLinkTask = new ShareLinkTask();
