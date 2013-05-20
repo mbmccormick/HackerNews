@@ -28,9 +28,7 @@ namespace HackerNews
 
             if (App.HackerNewsClient.PostHistory.Contains(item.id) == true)
             {
-                this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
-                this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
-                this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+                TogglePostInactive();
             }
         }
 
@@ -40,10 +38,10 @@ namespace HackerNews
 
             if (item.url.StartsWith("http") == true)
             {
-                WebBrowserTask browser = new WebBrowserTask();
-                browser.Uri = new Uri(item.url);
+                WebBrowserTask webBrowserTask = new WebBrowserTask();
+                webBrowserTask.Uri = new Uri(item.url);
 
-                browser.Show();
+                webBrowserTask.Show();
             }
             else
             {
@@ -52,9 +50,7 @@ namespace HackerNews
 
             App.HackerNewsClient.MarkPostAsRead(item.id);
 
-            this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
-            this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
-            this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+            TogglePostInactive();
         }
 
         private void CommentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -67,12 +63,17 @@ namespace HackerNews
             {
                 App.HackerNewsClient.MarkPostAsRead(item.id);
 
-                this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
-                this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
-                this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+                TogglePostInactive();
             }
 
             App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
+        }
+
+        private void TogglePostInactive()
+        {
+            this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+            this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+            this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
         }
     }
 }

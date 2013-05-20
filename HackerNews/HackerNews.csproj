@@ -141,6 +141,7 @@
     </Content>
     <Content Include="Content\About\Data.xml" />
     <Content Include="Resources\Refresh.png" />
+    <Content Include="Resources\Share.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />

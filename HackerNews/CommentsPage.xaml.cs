@@ -20,6 +20,8 @@ namespace HackerNews
     {
         #region List Properties
 
+        public static CommentResponse CurrentPost { get; set; }
+
         public static ObservableCollection<Comment> Comments { get; set; }
 
         #endregion
@@ -52,30 +54,32 @@ namespace HackerNews
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
-                        if (result != null &&
-                            result.comments != null)
+                        CurrentPost = result;
+
+                        if (CurrentPost != null &&
+                            CurrentPost.comments != null)
                         {
-                            this.txtTitle.Text = result.title;
-                            this.txtBody.Text = result.description;
+                            this.txtTitle.Text = CurrentPost.title;
+                            this.txtBody.Text = CurrentPost.description;
 
                             Comments.Clear();
 
-                            foreach (Comment item in result.comments)
+                            foreach (Comment item in CurrentPost.comments)
                             {
                                 Comments.Add(item);
                             }
 
-                            if (result.content != null)
+                            if (CurrentPost.content != null)
                             {
                                 Comment data = new Comment();
 
                                 data.comments = null;
-                                data.content = result.content;
+                                data.content = CurrentPost.content;
                                 data.id = null;
                                 data.level = 0;
-                                data.time_ago = result.time_ago;
-                                data.title = result.user + " " + result.time_ago;
-                                data.user = result.user;
+                                data.time_ago = CurrentPost.time_ago;
+                                data.title = CurrentPost.user + " " + CurrentPost.time_ago;
+                                data.user = CurrentPost.user;
 
                                 Comments.Insert(0, data);
                             }
@@ -90,6 +94,16 @@ namespace HackerNews
                     });
                 }, id);
             }
+        }
+
+        private void Share_Click(object sender, EventArgs e)
+        {
+            ShareLinkTask shareLinkTask = new ShareLinkTask();
+
+            shareLinkTask.Title = CurrentPost.title;
+            shareLinkTask.Message = "Check out this post I found on Hacker News!";
+            shareLinkTask.LinkUri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
+            shareLinkTask.Show();
         }
 
         private void Feedback_Click(object sender, EventArgs e)

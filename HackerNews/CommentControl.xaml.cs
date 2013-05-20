@@ -99,10 +99,10 @@ namespace HackerNews
         {
             Hyperlink item = sender as Hyperlink;
 
-            WebBrowserTask browser = new WebBrowserTask();
-            browser.Uri = new Uri(item.NavigateUri.AbsoluteUri, UriKind.Absolute);
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri(item.NavigateUri.AbsoluteUri, UriKind.Absolute);
 
-            browser.Show();
+            webBrowserTask.Show();
         }
     }
 }
