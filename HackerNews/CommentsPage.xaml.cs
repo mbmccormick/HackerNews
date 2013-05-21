@@ -96,22 +96,21 @@ namespace HackerNews
             }
         }
 
+        private void Share_Click(object sender, EventArgs e)
+        {
+            ShareLinkTask shareLinkTask = new ShareLinkTask();
+
+            shareLinkTask.Title = CurrentPost.title;
+            shareLinkTask.LinkUri = new Uri(CurrentPost.url);
+            shareLinkTask.Show();
+        }
+
         private void Navigate_Click(object sender, EventArgs e)
         {
             WebBrowserTask webBrowserTask = new WebBrowserTask();
 
             webBrowserTask.Uri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
             webBrowserTask.Show();
-        }
-
-        private void Share_Click(object sender, EventArgs e)
-        {
-            ShareLinkTask shareLinkTask = new ShareLinkTask();
-
-            shareLinkTask.Title = CurrentPost.title;
-            shareLinkTask.Message = "Check out this post I found on Hacker News!";
-            shareLinkTask.LinkUri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
-            shareLinkTask.Show();
         }
 
         private void Feedback_Click(object sender, EventArgs e)

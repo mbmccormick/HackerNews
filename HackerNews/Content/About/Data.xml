@@ -49,14 +49,26 @@
               Label="Support:" />
       </Links>
     </MainItem>
-    <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
-    <!-- The Title attribute defines the title of the pivot item -->
-    <!-- Each Item can be a remote item (fetched from a Uri) or a local item (using its content), or both (local content is the fallback value if fetching the network content fails) -->
-    <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
-    <Item Title="history"
+    <Item Title="legal" Type="text">
+      Privacy Policy
+      Hacker News is a client application designed to connect you with the excellent Hacker News community.
+
+      Information Collected
+      In the event of an application error, crash, or problem, we may ask you to send an email message with crash information. Such an email may contain personally identifiable information, and it is your choice whether to send such a message. While using the app, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you and help you resolve support or assistance with the app. This will happen through a prompt asking for feedback, allowing you to send an e-mail message, and is not automatic. In order to provide you with a better experience, to improve the application and its services, we may share non-identifying information (such as the current page within the application being viewed) to serve you better and analyze and understand how the app is used.
+
+      Notes
+      Hacker News is a trademark of Y Combinator. This application uses the Hacker News website for retrieving data but is not endorsed or certified by Y Combinator.
+
+      Contacting the Author
+      If you have any questions about this Privacy Policy, please send an email to feedback@mbmccormick.com.
+    </Item>
+    <Item Title="what's new?"
           Type="text">
-      1.0.0.0
-      This is the initial public version.      
+      Version 1.1
+      This version includes several bug fixes, improved performance, some minor tweaks to the user interface, and the ability share a link from within the application.
+
+      Version 1.0
+      This is the initial public version of Hacker News for Windows Phone. This version includes the ability to fetch the latest top, new, and ask posts from Hacker News, visit the links, read the comments, and keep track of which posts have been read.
     </Item>
   </Items>
 </About>
