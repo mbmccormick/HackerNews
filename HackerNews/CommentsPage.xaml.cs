@@ -32,7 +32,25 @@ namespace HackerNews
         {
             InitializeComponent();
 
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+            
             Comments = new ObservableCollection<Comment>();
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                this.txtTitle.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtBody.Visibility = System.Windows.Visibility.Collapsed;
+
+                ToggleLoadingText();
+                
+                this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                this.txtEmpty.Text = "Sorry, could not download comments right now.";
+
+                this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -56,33 +74,29 @@ namespace HackerNews
                     {
                         CurrentPost = result;
 
-                        if (CurrentPost != null &&
-                            CurrentPost.comments != null)
+                        this.txtTitle.Text = CurrentPost.title;
+                        this.txtBody.Text = CurrentPost.description;
+
+                        Comments.Clear();
+
+                        foreach (Comment item in CurrentPost.comments)
                         {
-                            this.txtTitle.Text = CurrentPost.title;
-                            this.txtBody.Text = CurrentPost.description;
+                            Comments.Add(item);
+                        }
 
-                            Comments.Clear();
+                        if (CurrentPost.content != null)
+                        {
+                            Comment data = new Comment();
 
-                            foreach (Comment item in CurrentPost.comments)
-                            {
-                                Comments.Add(item);
-                            }
+                            data.comments = null;
+                            data.content = CurrentPost.content;
+                            data.id = null;
+                            data.level = 0;
+                            data.time_ago = CurrentPost.time_ago;
+                            data.title = CurrentPost.user + " " + CurrentPost.time_ago;
+                            data.user = CurrentPost.user;
 
-                            if (CurrentPost.content != null)
-                            {
-                                Comment data = new Comment();
-
-                                data.comments = null;
-                                data.content = CurrentPost.content;
-                                data.id = null;
-                                data.level = 0;
-                                data.time_ago = CurrentPost.time_ago;
-                                data.title = CurrentPost.user + " " + CurrentPost.time_ago;
-                                data.user = CurrentPost.user;
-
-                                Comments.Insert(0, data);
-                            }
+                            Comments.Insert(0, data);
                         }
 
                         isLoaded = true;

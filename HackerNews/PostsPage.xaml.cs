@@ -34,9 +34,22 @@ namespace HackerNews
         {
             InitializeComponent();
 
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+
             TopPosts = new ObservableCollection<Post>();
             NewPosts = new ObservableCollection<Post>();
             AskPosts = new ObservableCollection<Post>();
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                ToggleLoadingText();
+                ToggleEmptyText();
+
+                this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -60,15 +73,11 @@ namespace HackerNews
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    if (result != null &&
-                        result.Count > 0)
-                    {
-                        TopPosts.Clear();
+                    TopPosts.Clear();
 
-                        foreach (Post item in result)
-                        {
-                            TopPosts.Add(item);
-                        }
+                    foreach (Post item in result)
+                    {
+                        TopPosts.Add(item);
                     }
 
                     isTopLoaded = true;
@@ -89,15 +98,11 @@ namespace HackerNews
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    if (result != null &&
-                        result.Count > 0)
-                    {
-                        NewPosts.Clear();
+                    NewPosts.Clear();
 
-                        foreach (Post item in result)
-                        {
-                            NewPosts.Add(item);
-                        }
+                    foreach (Post item in result)
+                    {
+                        NewPosts.Add(item);
                     }
 
                     isNewLoaded = true;
@@ -118,15 +123,11 @@ namespace HackerNews
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
-                    if (result != null &&
-                        result.Count > 0)
-                    {
-                        AskPosts.Clear();
+                    AskPosts.Clear();
 
-                        foreach (Post item in result)
-                        {
-                            AskPosts.Add(item);
-                        }
+                    foreach (Post item in result)
+                    {
+                        AskPosts.Add(item);
                     }
 
                     isAskLoaded = true;

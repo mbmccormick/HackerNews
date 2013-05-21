@@ -139,7 +139,9 @@
     <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\About\Data.xml" />
+    <Content Include="Content\About\Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\Browser.png" />
     <Content Include="Resources\Refresh.png" />
     <Content Include="Resources\Share.png" />

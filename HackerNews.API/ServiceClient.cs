@@ -41,29 +41,22 @@ namespace HackerNews.API
 
             request.BeginGetResponse((result) =>
             {
-                try
-                {
-                    var response = request.EndGetResponse(result);
+                var response = request.EndGetResponse(result);
 
-                    Stream stream = response.GetResponseStream();
-                    UTF8Encoding encoding = new UTF8Encoding();
-                    StreamReader sr = new StreamReader(stream, encoding);
+                Stream stream = response.GetResponseStream();
+                UTF8Encoding encoding = new UTF8Encoding();
+                StreamReader sr = new StreamReader(stream, encoding);
 
-                    JsonTextReader tr = new JsonTextReader(sr);
-                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
+                JsonTextReader tr = new JsonTextReader(sr);
+                List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
-                    tr.Close();
-                    sr.Close();
+                tr.Close();
+                sr.Close();
 
-                    foreach (var item in data)
-                        item.title = CleanText(item.title);
+                foreach (var item in data)
+                    item.title = CleanText(item.title);
 
-                    callback(data);
-                }
-                catch (WebException ex)
-                {
-                    callback(null);
-                }
+                callback(data);
 
             }, state);
         }
@@ -78,29 +71,22 @@ namespace HackerNews.API
 
             request.BeginGetResponse((result) =>
             {
-                try
-                {
-                    var response = request.EndGetResponse(result);
+                var response = request.EndGetResponse(result);
 
-                    Stream stream = response.GetResponseStream();
-                    UTF8Encoding encoding = new UTF8Encoding();
-                    StreamReader sr = new StreamReader(stream, encoding);
+                Stream stream = response.GetResponseStream();
+                UTF8Encoding encoding = new UTF8Encoding();
+                StreamReader sr = new StreamReader(stream, encoding);
 
-                    JsonTextReader tr = new JsonTextReader(sr);
-                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
+                JsonTextReader tr = new JsonTextReader(sr);
+                List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
-                    tr.Close();
-                    sr.Close();
+                tr.Close();
+                sr.Close();
 
-                    foreach (var item in data)
-                        item.title = CleanText(item.title);
+                foreach (var item in data)
+                    item.title = CleanText(item.title);
 
-                    callback(data);
-                }
-                catch (WebException ex)
-                {
-                    callback(null);
-                }
+                callback(data);
 
             }, state);
         }
@@ -115,29 +101,22 @@ namespace HackerNews.API
 
             request.BeginGetResponse((result) =>
             {
-                try
-                {
-                    var response = request.EndGetResponse(result);
+                var response = request.EndGetResponse(result);
 
-                    Stream stream = response.GetResponseStream();
-                    UTF8Encoding encoding = new UTF8Encoding();
-                    StreamReader sr = new StreamReader(stream, encoding);
+                Stream stream = response.GetResponseStream();
+                UTF8Encoding encoding = new UTF8Encoding();
+                StreamReader sr = new StreamReader(stream, encoding);
 
-                    JsonTextReader tr = new JsonTextReader(sr);
-                    List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
+                JsonTextReader tr = new JsonTextReader(sr);
+                List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
-                    tr.Close();
-                    sr.Close();
+                tr.Close();
+                sr.Close();
 
-                    foreach (var item in data)
-                        item.title = CleanText(item.title);
+                foreach (var item in data)
+                    item.title = CleanText(item.title);
 
-                    callback(data);
-                }
-                catch (WebException ex)
-                {
-                    callback(null);
-                }
+                callback(data);
 
             }, state);
         }
@@ -152,34 +131,27 @@ namespace HackerNews.API
 
             request.BeginGetResponse((result) =>
             {
-                try
+                var response = request.EndGetResponse(result);
+
+                Stream stream = response.GetResponseStream();
+                UTF8Encoding encoding = new UTF8Encoding();
+                StreamReader sr = new StreamReader(stream, encoding);
+
+                JsonTextReader tr = new JsonTextReader(sr);
+                CommentResponse data = new JsonSerializer().Deserialize<CommentResponse>(tr);
+
+                tr.Close();
+                sr.Close();
+
+                int i = data.comments.Count - 1;
+
+                while (i >= 0)
                 {
-                    var response = request.EndGetResponse(result);
-
-                    Stream stream = response.GetResponseStream();
-                    UTF8Encoding encoding = new UTF8Encoding();
-                    StreamReader sr = new StreamReader(stream, encoding);
-
-                    JsonTextReader tr = new JsonTextReader(sr);
-                    CommentResponse data = new JsonSerializer().Deserialize<CommentResponse>(tr);
-
-                    tr.Close();
-                    sr.Close();
-
-                    int i = data.comments.Count - 1;
-
-                    while (i >= 0)
-                    {
-                        data.comments[i] = CleanCommentText(data.comments[i]);
-                        i--;
-                    }
-
-                    callback(data);
+                    data.comments[i] = CleanCommentText(data.comments[i]);
+                    i--;
                 }
-                catch (WebException ex)
-                {
-                    callback(null);
-                }
+
+                callback(data);
 
             }, state);
         }

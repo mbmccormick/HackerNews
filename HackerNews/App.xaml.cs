@@ -12,6 +12,7 @@ using System.Collections;
 using System.Windows.Media;
 using HackerNews.API;
 using Microsoft.Phone.Tasks;
+using System.Net;
 
 namespace HackerNews
 {
@@ -19,6 +20,8 @@ namespace HackerNews
     {
         public static ServiceClient HackerNewsClient;
         public static string FeedbackEmailAddress = "feedback@mbmccormick.com";
+
+        public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
 
         public static string VersionNumber
         {
@@ -108,14 +111,20 @@ namespace HackerNews
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            LittleWatson.ReportException(e.ExceptionObject, null);
-
-            RootFrame.Dispatcher.BeginInvoke(() =>
+            if ((e.ExceptionObject is WebException) == false)
             {
-                LittleWatson.CheckForPreviousException(false);
-            });
+                LittleWatson.ReportException(e.ExceptionObject, null);
+
+                RootFrame.Dispatcher.BeginInvoke(() =>
+                {
+                    LittleWatson.CheckForPreviousException(false);
+                });
+            }
 
             e.Handled = true;
+
+            if (UnhandledExceptionHandled != null)
+                UnhandledExceptionHandled(sender, e);
 
             if (Debugger.IsAttached)
             {
