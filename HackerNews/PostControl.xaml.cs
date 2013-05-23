@@ -26,7 +26,7 @@ namespace HackerNews
         {
             Post item = this.DataContext as Post;
 
-            if (item.type == "ask")
+            if (item.type == "job")
                 this.stkCommentCount.Visibility = System.Windows.Visibility.Collapsed;
         }
 
