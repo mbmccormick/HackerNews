@@ -21,7 +21,7 @@ namespace HackerNews.API
     public class ServiceClient
     {
         public List<string> PostHistory;
-        public int MaxPostHistory = 200;
+        public int MaxPostHistory = 250;
 
         public ServiceClient()
         {
@@ -54,7 +54,13 @@ namespace HackerNews.API
                 sr.Close();
 
                 foreach (var item in data)
+                {
                     item.title = CleanText(item.title);
+                    item.is_read = PostHistory.Contains(item.id);
+
+                    if (item.url.StartsWith("http") == false)
+                        item.url = "http://news.ycombinator.com/item?id=" + item.id;
+                }
 
                 callback(data);
 
@@ -84,7 +90,13 @@ namespace HackerNews.API
                 sr.Close();
 
                 foreach (var item in data)
+                {
                     item.title = CleanText(item.title);
+                    item.is_read = PostHistory.Contains(item.id);
+
+                    if (item.url.StartsWith("http") == false)
+                        item.url = "http://news.ycombinator.com/item?id=" + item.id;
+                }
 
                 callback(data);
 
@@ -114,7 +126,13 @@ namespace HackerNews.API
                 sr.Close();
 
                 foreach (var item in data)
+                {
                     item.title = CleanText(item.title);
+                    item.is_read = PostHistory.Contains(item.id);
+
+                    if (item.url.StartsWith("http") == false)
+                        item.url = "http://news.ycombinator.com/item?id=" + item.id;
+                }
 
                 callback(data);
 
@@ -142,6 +160,21 @@ namespace HackerNews.API
 
                 tr.Close();
                 sr.Close();
+
+                if (data.content != null)
+                {
+                    Comment child = new Comment();
+
+                    child.comments = null;
+                    child.content = data.content;
+                    child.id = null;
+                    child.level = 0;
+                    child.time_ago = data.time_ago;
+                    child.title = data.user + " " + data.time_ago;
+                    child.user = data.user;
+
+                    data.comments.Insert(0, child);
+                }
 
                 int i = data.comments.Count - 1;
 
@@ -191,8 +224,11 @@ namespace HackerNews.API
         {
             input.content = CleanText(input.content);
 
-            foreach (var item in input.comments)
-                CleanText(CleanCommentText(item).content);
+            if (input.comments != null)
+            {
+                foreach (var item in input.comments)
+                    CleanText(CleanCommentText(item).content);
+            }
 
             return input;
         }

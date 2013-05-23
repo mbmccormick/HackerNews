@@ -25,18 +25,14 @@ namespace HackerNews
         private void PostControl_Loaded(object sender, RoutedEventArgs e)
         {
             Post item = this.DataContext as Post;
-
-            if (App.HackerNewsClient.PostHistory.Contains(item.id) == true)
-            {
-                TogglePostInactive();
-            }
         }
 
         private void PostControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
-            if (item.url.StartsWith("http") == true)
+            if (item.type == "link" ||
+                item.type == "job")
             {
                 WebBrowserTask webBrowserTask = new WebBrowserTask();
                 webBrowserTask.Uri = new Uri(item.url);
@@ -49,8 +45,7 @@ namespace HackerNews
             }
 
             App.HackerNewsClient.MarkPostAsRead(item.id);
-
-            TogglePostInactive();
+            item.is_read = true;
         }
 
         private void CommentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -62,18 +57,10 @@ namespace HackerNews
             if (item.type == "ask")
             {
                 App.HackerNewsClient.MarkPostAsRead(item.id);
-
-                TogglePostInactive();
+                item.is_read = true;
             }
 
             App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
-        }
-
-        private void TogglePostInactive()
-        {
-            this.txtTitle.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
-            this.txtDescription.Foreground = new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
-            this.pthCommentCount.Fill = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
         }
     }
 }

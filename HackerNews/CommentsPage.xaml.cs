@@ -33,7 +33,7 @@ namespace HackerNews
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-            
+
             Comments = new ObservableCollection<Comment>();
         }
 
@@ -42,10 +42,10 @@ namespace HackerNews
             Dispatcher.BeginInvoke(() =>
             {
                 this.txtTitle.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtBody.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtDescription.Visibility = System.Windows.Visibility.Collapsed;
 
                 ToggleLoadingText();
-                
+
                 this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                 this.txtEmpty.Text = "Sorry, could not download comments right now.";
 
@@ -75,28 +75,13 @@ namespace HackerNews
                         CurrentPost = result;
 
                         this.txtTitle.Text = CurrentPost.title;
-                        this.txtBody.Text = CurrentPost.description;
+                        this.txtDescription.Text = CurrentPost.description;
 
                         Comments.Clear();
 
                         foreach (Comment item in CurrentPost.comments)
                         {
                             Comments.Add(item);
-                        }
-
-                        if (CurrentPost.content != null)
-                        {
-                            Comment data = new Comment();
-
-                            data.comments = null;
-                            data.content = CurrentPost.content;
-                            data.id = null;
-                            data.level = 0;
-                            data.time_ago = CurrentPost.time_ago;
-                            data.title = CurrentPost.user + " " + CurrentPost.time_ago;
-                            data.user = CurrentPost.user;
-
-                            Comments.Insert(0, data);
                         }
 
                         isLoaded = true;
