@@ -25,16 +25,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
-
-        <StackPanel Grid.Row="0" Margin="12,17,0,28" DataContext="{Binding CurrentPost}">
+        <StackPanel Grid.Row="0" Margin="12,18,0,28" DataContext="{Binding CurrentPost}">
             <TextBlock Text="HACKER NEWS" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="Black" />
             <TextBlock x:Name="txtLoading" Margin="12,12,0,0" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
             <TextBlock Name="txtTitle" Margin="12,24,24,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
             <TextBlock Name="txtDescription" Margin="12,0,24,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-12">
+        <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,2,12,-12">
             <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

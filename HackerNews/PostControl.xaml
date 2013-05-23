@@ -12,7 +12,7 @@
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="54" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostControl_Tap">
@@ -20,14 +20,13 @@
             <TextBlock Name="txtDescription" Text="{Binding description}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding description_foreground}" />
         </StackPanel>
 
-        <Canvas Grid.Column="1" Tap="CommentControl_Tap" Margin="0,-8,-6,0">
-            <Canvas x:Name="Captions" />
+        <StackPanel Name="stkCommentCount" Grid.Column="1" Margin="0,-8,-6,0" Width="58" Tap="CommentControl_Tap">
             <Canvas x:Name="Layer_4">
-                <Path Name="pthCommentCount" Fill="{Binding comment_fill}" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
+                <Path Fill="{Binding comment_fill}" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
             </Canvas>
-        </Canvas>
 
-        <TextBlock Grid.Column="1" Text="{Binding comments_count}" HorizontalAlignment="Center" Margin="0,4,-6,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" Tap="CommentControl_Tap" />
+            <TextBlock Text="{Binding comments_count}" HorizontalAlignment="Center" Margin="2,12,0,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" Tap="CommentControl_Tap" />
+        </StackPanel>
     </Grid>
 
 </UserControl>

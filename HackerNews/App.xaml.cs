@@ -77,6 +77,9 @@ namespace HackerNews
             Resources.Add("PhoneBackgroundColor", Color.FromArgb(255, 246, 246, 239));
 
             ((SolidColorBrush)Resources["PhoneBackgroundBrush"]).Color = Color.FromArgb(255, 246, 246, 239);
+
+            if (System.Diagnostics.Debugger.IsAttached)
+                MetroGridHelper.IsVisible = true;
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)

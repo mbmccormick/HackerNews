@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Common\LittleWatson.cs" />
+    <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="PostControl.xaml.cs">
       <DependentUpon>PostControl.xaml</DependentUpon>
@@ -129,7 +130,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

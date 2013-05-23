@@ -28,7 +28,9 @@ namespace HackerNews
         {
             Comment item = this.DataContext as Comment;
 
-            SetLinkedText(this.txtContent, item.content);
+            SetLinkedText(this.txtRichContent, item.content);
+
+            this.txtPlainContent.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private static void SetLinkedText(RichTextBox richTextBox, string htmlFragment)

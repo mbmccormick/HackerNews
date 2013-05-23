@@ -25,6 +25,9 @@ namespace HackerNews
         private void PostControl_Loaded(object sender, RoutedEventArgs e)
         {
             Post item = this.DataContext as Post;
+
+            if (item.type == "ask")
+                this.stkCommentCount.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void PostControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
