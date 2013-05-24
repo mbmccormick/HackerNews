@@ -161,6 +161,9 @@ namespace HackerNews.API
                 tr.Close();
                 sr.Close();
 
+                if (data.url.StartsWith("http") == false)
+                    data.url = "http://news.ycombinator.com/item?id=" + data.id;
+
                 if (data.content != null)
                 {
                     Comment child = new Comment();
