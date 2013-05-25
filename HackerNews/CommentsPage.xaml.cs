@@ -97,6 +97,8 @@ namespace HackerNews
 
         private void Share_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+            
             ShareLinkTask shareLinkTask = new ShareLinkTask();
 
             shareLinkTask.Title = CurrentPost.title;
@@ -106,6 +108,8 @@ namespace HackerNews
 
         private void Navigate_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             WebBrowserTask webBrowserTask = new WebBrowserTask();
 
             webBrowserTask.Uri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
@@ -114,6 +118,8 @@ namespace HackerNews
 
         private void Feedback_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             EmailComposeTask emailComposeTask = new EmailComposeTask();
 
             emailComposeTask.To = App.FeedbackEmailAddress;
@@ -124,6 +130,8 @@ namespace HackerNews
 
         private void About_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
 

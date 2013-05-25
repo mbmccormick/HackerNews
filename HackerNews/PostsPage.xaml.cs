@@ -147,6 +147,8 @@ namespace HackerNews
 
         private void Refresh_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             isTopLoaded = false;
             isNewLoaded = false;
             isAskLoaded = false;
@@ -156,6 +158,8 @@ namespace HackerNews
 
         private void Feedback_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             EmailComposeTask emailComposeTask = new EmailComposeTask();
 
             emailComposeTask.To = App.FeedbackEmailAddress;
@@ -166,6 +170,8 @@ namespace HackerNews
 
         private void About_Click(object sender, EventArgs e)
         {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
 
