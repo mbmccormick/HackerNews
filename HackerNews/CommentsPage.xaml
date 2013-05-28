@@ -58,9 +58,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
-            <shell:ApplicationBarIconButton IconUri="/Resources/Share.png" Text="share" Click="Share_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Resources/Browser.png" Text="navigate" Click="Navigate_Click" />
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized"  BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
                 <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />

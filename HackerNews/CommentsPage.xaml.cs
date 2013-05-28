@@ -95,27 +95,6 @@ namespace HackerNews
             }
         }
 
-        private void Share_Click(object sender, EventArgs e)
-        {
-            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
-            
-            ShareLinkTask shareLinkTask = new ShareLinkTask();
-
-            shareLinkTask.Title = CurrentPost.title;
-            shareLinkTask.LinkUri = new Uri(CurrentPost.url);
-            shareLinkTask.Show();
-        }
-
-        private void Navigate_Click(object sender, EventArgs e)
-        {
-            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
-
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
-
-            webBrowserTask.Uri = new Uri("http://news.ycombinator.com/item?id=" + CurrentPost.id);
-            webBrowserTask.Show();
-        }
-
         private void Feedback_Click(object sender, EventArgs e)
         {
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
