@@ -65,10 +65,10 @@
     <Item Title="what's new?"
           Type="text">
       Version 1.1
-      This version includes several bug fixes, improved performance, some minor tweaks to the user interface, and the ability share a link from within the application.
+      This version includes the ability to read the comments, visit links from comments, and keep track of which posts have been read. This version also includes several bug fixes, improved performance, and some minor tweaks to the user interface.
 
       Version 1.0
-      This is the initial public version of Hacker News for Windows Phone. This version includes the ability to fetch the latest top, new, and ask posts from Hacker News, visit the links, read the comments, and keep track of which posts have been read.
+      This is the initial release of Hacker News for Windows Phone. This version includes the ability to fetch the latest Top, New, and Ask posts from Hacker News and visit the links in Internet Explorer.
     </Item>
   </Items>
 </About>
