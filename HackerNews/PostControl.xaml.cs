@@ -51,7 +51,7 @@ namespace HackerNews
             item.is_read = true;
         }
 
-        private void CommentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void CommentCount_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
