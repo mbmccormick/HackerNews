@@ -20,6 +20,8 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
+        private string serverAddress = "hnwpapi.herokuapp.com";
+
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
 
@@ -33,7 +35,7 @@ namespace HackerNews.API
 
         public void GetTopPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/news") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/news") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -69,7 +71,7 @@ namespace HackerNews.API
 
         public void GetNewPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/newest") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/newest") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -105,7 +107,7 @@ namespace HackerNews.API
 
         public void GetAskPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/ask") as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/ask") as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
@@ -141,7 +143,7 @@ namespace HackerNews.API
 
         public void GetComments(Action<CommentResponse> callback, string postId)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://hnwpapi.herokuapp.com/item/" + postId) as HttpWebRequest;
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/item/" + postId) as HttpWebRequest;
             request.Accept = "application/json";
 
             AsyncState state = new AsyncState();
