@@ -20,7 +20,7 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        private string serverAddress = "hnwpapi.herokuapp.com";
+        private string serverAddress = "node-hnapi.herokuapp.com";
 
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
