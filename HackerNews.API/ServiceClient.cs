@@ -38,9 +38,6 @@ namespace HackerNews.API
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/news") as HttpWebRequest;
             request.Accept = "application/json";
 
-            AsyncState state = new AsyncState();
-            state.request = request;
-
             request.BeginGetResponse((result) =>
             {
                 var response = request.EndGetResponse(result);
@@ -73,7 +70,7 @@ namespace HackerNews.API
 
                 callback(data);
 
-            }, state);
+            }, null);
         }
 
         public void GetNewPosts(Action<List<Post>> callback)
@@ -81,9 +78,6 @@ namespace HackerNews.API
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/newest") as HttpWebRequest;
             request.Accept = "application/json";
 
-            AsyncState state = new AsyncState();
-            state.request = request;
-
             request.BeginGetResponse((result) =>
             {
                 var response = request.EndGetResponse(result);
@@ -116,7 +110,7 @@ namespace HackerNews.API
 
                 callback(data);
 
-            }, state);
+            }, null);
         }
 
         public void GetAskPosts(Action<List<Post>> callback)
@@ -124,9 +118,6 @@ namespace HackerNews.API
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/ask") as HttpWebRequest;
             request.Accept = "application/json";
 
-            AsyncState state = new AsyncState();
-            state.request = request;
-
             request.BeginGetResponse((result) =>
             {
                 var response = request.EndGetResponse(result);
@@ -159,16 +150,13 @@ namespace HackerNews.API
 
                 callback(data);
 
-            }, state);
+            }, null);
         }
 
         public void GetComments(Action<CommentResponse> callback, string postId)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/item/" + postId) as HttpWebRequest;
             request.Accept = "application/json";
-
-            AsyncState state = new AsyncState();
-            state.request = request;
 
             request.BeginGetResponse((result) =>
             {
@@ -218,7 +206,7 @@ namespace HackerNews.API
 
                 callback(data);
 
-            }, state);
+            }, null);
         }
 
         public void MarkPostAsRead(string postId)

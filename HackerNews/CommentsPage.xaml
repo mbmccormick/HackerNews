@@ -48,7 +48,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <uc:CommentControl Margin="12,0,12,0" />
+                        <uc:CommentControl Margin="12,0,12,24" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

@@ -103,6 +103,7 @@
     <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
+    <Compile Include="Models\CommentItem.cs" />
     <Compile Include="PostControl.xaml.cs">
       <DependentUpon>PostControl.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <None Include="HackerNews_2013_09_05_10_55_36.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">

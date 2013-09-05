@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
+using HackerNews.Models;
 
 namespace HackerNews
 {
@@ -26,7 +27,9 @@ namespace HackerNews
 
         private void CommentControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Comment item = this.DataContext as Comment;
+            CommentItem item = this.DataContext as CommentItem;
+
+            this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
 
             SetLinkedText(this.txtRichContent, item.content);
 

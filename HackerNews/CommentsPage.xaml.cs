@@ -13,6 +13,8 @@ using System.Collections.ObjectModel;
 using HackerNews.Common;
 using Microsoft.Phone.Tasks;
 using System.Windows.Media;
+using System.Collections;
+using HackerNews.Models;
 
 namespace HackerNews
 {
@@ -22,7 +24,7 @@ namespace HackerNews
 
         public static CommentResponse CurrentPost { get; set; }
 
-        public static ObservableCollection<Comment> Comments { get; set; }
+        public static ObservableCollection<CommentItem> Comments { get; set; }
 
         #endregion
 
@@ -34,7 +36,7 @@ namespace HackerNews
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
-            Comments = new ObservableCollection<Comment>();
+            Comments = new ObservableCollection<CommentItem>();
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -79,10 +81,7 @@ namespace HackerNews
 
                         Comments.Clear();
 
-                        foreach (Comment item in CurrentPost.comments)
-                        {
-                            Comments.Add(item);
-                        }
+                        Flatten(CurrentPost.comments);
 
                         isLoaded = true;
 
@@ -133,6 +132,16 @@ namespace HackerNews
                 else
                     this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
+        }
+
+        private static void Flatten(List<Comment> enumerable)
+        {
+            foreach (Comment item in enumerable)
+            {
+                Comments.Add(new CommentItem(item));
+
+                Flatten(item.comments);
+            }
         }
     }
 }

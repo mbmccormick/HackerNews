@@ -15,23 +15,5 @@
         <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
         <TextBlock Name="txtPlainContent" Text="{Binding content}" TextWrapping="Wrap" Margin="0,0,0,0" Foreground="#FF828282" />
         <RichTextBox Name="txtRichContent" TextWrapping="Wrap" Margin="-12,0,-12,0" Foreground="#FF828282" />
-
-        <ListBox ItemsSource="{Binding comments}" Margin="12,12,0,0" Foreground="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Margin="0,12,0,0" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <uc:CommentControl />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </StackPanel>
 </UserControl>
