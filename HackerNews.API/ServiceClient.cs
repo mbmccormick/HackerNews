@@ -53,7 +53,9 @@ namespace HackerNews.API
                 List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                 tr.Close();
-                sr.Close();
+                sr.Dispose();
+
+                stream.Dispose();
 
                 foreach (var item in data)
                 {
@@ -94,7 +96,9 @@ namespace HackerNews.API
                 List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                 tr.Close();
-                sr.Close();
+                sr.Dispose();
+
+                stream.Dispose();
 
                 foreach (var item in data)
                 {
@@ -135,7 +139,9 @@ namespace HackerNews.API
                 List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
 
                 tr.Close();
-                sr.Close();
+                sr.Dispose();
+
+                stream.Dispose();
 
                 foreach (var item in data)
                 {
@@ -176,10 +182,14 @@ namespace HackerNews.API
                 CommentResponse data = new JsonSerializer().Deserialize<CommentResponse>(tr);
 
                 tr.Close();
-                sr.Close();
+                sr.Dispose();
+
+                stream.Dispose();
 
                 if (data.url.StartsWith("http") == false)
                     data.url = "http://news.ycombinator.com/item?id=" + data.id;
+
+                data = FormatCommentPost(data);
 
                 if (data.content != null)
                 {
@@ -241,6 +251,21 @@ namespace HackerNews.API
             return data;
         }
 
+        private CommentResponse FormatCommentPost(CommentResponse data)
+        {
+            if (data.type == "job")
+            {
+                data.points = 0;
+                data.user = "N/A";
+            }
+
+            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            data.description = data.points == 1 ? data.points + " point, posted " + data.time_ago + " by " + data.user : data.points + " points, posted " + data.time_ago + " by " + data.user;
+            data.description = data.type == "job" ? "Posted " + data.time_ago : data.description;
+
+            return data;
+        }
+
         private Comment FormatComment(Comment data)
         {
             data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
@@ -266,6 +291,12 @@ namespace HackerNews.API
             data = data.Replace("&euro;", "...");
             data = data.Replace("__BR__", "\n\n");
             data = data.Replace("\\", "");
+            data = data.Replace("<p>", "\n\n");
+            data = data.Replace("<i>", "");
+            data = data.Replace("</i>", "");
+            data = data.Replace("&gt;", ">");
+            data = data.Replace("&lt;", "<");
+            data = data.Trim();
 
             return data;
         }

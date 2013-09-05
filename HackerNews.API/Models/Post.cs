@@ -17,7 +17,7 @@ namespace HackerNews.API.Models
         public string url { get; set; }
         public string domain { get; set; }
         public string description { get; set; }
-        public int points { get; set; }
+        public int? points { get; set; }
         public string user { get; set; }
         public string time_ago { get; set; }
         public int comments_count { get; set; }
