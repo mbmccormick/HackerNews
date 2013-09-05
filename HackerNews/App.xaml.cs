@@ -114,15 +114,12 @@ namespace HackerNews
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if ((e.ExceptionObject is WebException) == false)
-            {
-                LittleWatson.ReportException(e.ExceptionObject, null);
+            LittleWatson.ReportException(e.ExceptionObject, null);
 
-                RootFrame.Dispatcher.BeginInvoke(() =>
-                {
-                    LittleWatson.CheckForPreviousException(false);
-                });
-            }
+            RootFrame.Dispatcher.BeginInvoke(() =>
+            {
+                LittleWatson.CheckForPreviousException(false);
+            });
 
             e.Handled = true;
 

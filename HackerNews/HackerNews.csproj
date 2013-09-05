@@ -93,9 +93,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CommentControl.xaml.cs">
-      <DependentUpon>CommentControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
@@ -124,7 +121,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HackerNews_2013_09_05_10_55_36.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -159,10 +155,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CommentControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CommentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
