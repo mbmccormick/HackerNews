@@ -20,7 +20,7 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        private string serverAddress = "hnwpapi.herokuapp.com";
+        private string serverAddress = "node-hnapi.herokuapp.com";
 
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
@@ -64,6 +64,11 @@ namespace HackerNews.API
                         item.url = "http://news.ycombinator.com/item?id=" + item.id;
                 }
 
+                for (int i = 0; i < data.Count; i++)
+                {
+                    data[i] = FormatPost(data[i]);
+                }
+
                 callback(data);
 
             }, state);
@@ -100,6 +105,11 @@ namespace HackerNews.API
                         item.url = "http://news.ycombinator.com/item?id=" + item.id;
                 }
 
+                for (int i = 0; i < data.Count; i++)
+                {
+                    data[i] = FormatPost(data[i]);
+                }
+
                 callback(data);
 
             }, state);
@@ -134,6 +144,11 @@ namespace HackerNews.API
 
                     if (item.url.StartsWith("http") == false)
                         item.url = "http://news.ycombinator.com/item?id=" + item.id;
+                }
+
+                for (int i = 0; i < data.Count; i++)
+                {
+                    data[i] = FormatPost(data[i]);
                 }
 
                 callback(data);
@@ -186,6 +201,8 @@ namespace HackerNews.API
                 while (i >= 0)
                 {
                     data.comments[i] = CleanCommentText(data.comments[i]);
+                    data.comments[i] = FormatComment(data.comments[i]);
+
                     i--;
                 }
 
@@ -209,33 +226,58 @@ namespace HackerNews.API
             IsolatedStorageHelper.SaveObject<List<string>>("PostHistory", PostHistory);
         }
 
-        private string CleanText(string input)
+        private Post FormatPost(Post data)
         {
-            input = input.Replace("�", "");
-            input = input.Replace("&amp;", "");
-            input = input.Replace("&euro;&trade;", "'");
-            input = input.Replace("&euro;&oelig;", "\"");
-            input = input.Replace("&euro;?", "\"");
-            input = input.Replace("&euro;&ldquo;", "-");
-            input = input.Replace("&euro;&tilde;", "'");
-            input = input.Replace("&euro;", "...");
-            input = input.Replace("__BR__", "\n\n");
-            input = input.Replace("\\", "");
-
-            return input;
-        }
-
-        private Comment CleanCommentText(Comment input)
-        {
-            input.content = CleanText(input.content);
-
-            if (input.comments != null)
+            if (data.type == "job")
             {
-                foreach (var item in input.comments)
-                    CleanText(CleanCommentText(item).content);
+                data.points = 0;
+                data.user = "N/A";
             }
 
-            return input;
+            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            data.description = data.points == 1 ? data.points + " point, posted " + data.time_ago + " by " + data.user : data.points + " points, posted " + data.time_ago + " by " + data.user;
+            data.description = data.type == "job" ? "Posted " + data.time_ago : data.description;
+
+            return data;
+        }
+
+        private Comment FormatComment(Comment data)
+        {
+            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            data.title = data.user + " " + data.time_ago;
+
+            for (int i = 0; i < data.comments.Count; i++)
+            {
+                data.comments[i] = FormatComment(data.comments[i]);
+            }
+
+            return data;
+        }
+
+        private string CleanText(string data)
+        {
+            data = data.Replace("�", "");
+            data = data.Replace("&amp;", "");
+            data = data.Replace("&euro;&trade;", "'");
+            data = data.Replace("&euro;&oelig;", "\"");
+            data = data.Replace("&euro;?", "\"");
+            data = data.Replace("&euro;&ldquo;", "-");
+            data = data.Replace("&euro;&tilde;", "'");
+            data = data.Replace("&euro;", "...");
+            data = data.Replace("__BR__", "\n\n");
+            data = data.Replace("\\", "");
+
+            return data;
+        }
+
+        private Comment CleanCommentText(Comment data)
+        {
+            data.content = CleanText(data.content);
+
+            foreach (var item in data.comments)
+                CleanText(CleanCommentText(item).content);
+
+            return data;
         }
     }
 }
