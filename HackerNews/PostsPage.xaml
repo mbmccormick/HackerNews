@@ -18,6 +18,63 @@
     shell:SystemTray.ForegroundColor="#FF000000"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    
+	<phone:PhoneApplicationPage.Resources>
+        <Style x:Key="ScrollViewerCustomStyle" TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ScrollStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="00:00:00.5"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Scrolling">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalScrollBar"/>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalScrollBar"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="NotScrolling"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollContentPresenter x:Name="ScrollContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
+                                <ScrollBar x:Name="VerticalScrollBar" Background="#7FFF6600" HorizontalAlignment="Right" Height="Auto" IsHitTestVisible="False" IsTabStop="False" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Opacity="0" Orientation="Vertical" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{TemplateBinding VerticalOffset}" ViewportSize="{TemplateBinding ViewportHeight}" VerticalAlignment="Stretch" Width="5" />
+                                <ScrollBar x:Name="HorizontalScrollBar" HorizontalAlignment="Stretch" Height="5" IsHitTestVisible="False" IsTabStop="False" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Opacity="0" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{TemplateBinding HorizontalOffset}" ViewportSize="{TemplateBinding ViewportWidth}" VerticalAlignment="Bottom" Width="Auto"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+		<Style x:Key="ListBoxCustomStyle" TargetType="ListBox">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBox">
+                        <ScrollViewer x:Name="ScrollViewer" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" Padding="{TemplateBinding Padding}" Style="{StaticResource ScrollViewerCustomStyle}">
+							<ItemsPresenter/>
+						</ScrollViewer>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="#FFF6F6EF">
         <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
@@ -25,7 +82,7 @@
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
             <phone:PivotItem Header="top">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource ListBoxCustomStyle}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -50,7 +107,7 @@
 
             <phone:PivotItem Header="new">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource ListBoxCustomStyle}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
@@ -77,7 +134,7 @@
 
             <phone:PivotItem Header="ask">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource ListBoxCustomStyle}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,6" />
