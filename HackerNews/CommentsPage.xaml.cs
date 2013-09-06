@@ -17,6 +17,7 @@ using System.Collections;
 using HackerNews.Models;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
+using System.Windows.Controls.Primitives;
 
 namespace HackerNews
 {
@@ -26,9 +27,14 @@ namespace HackerNews
 
         public static CommentResponse CurrentPost { get; set; }
 
+        private static List<CommentItem> CommentsDataSource { get; set; }
+
         public static ObservableCollection<CommentItem> Comments { get; set; }
 
         #endregion
+
+        private int maxResults = 25;
+        private int currentOffset = 0;
 
         private bool isLoaded = false;
 
@@ -38,6 +44,7 @@ namespace HackerNews
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
+            CommentsDataSource = new List<CommentItem>();
             Comments = new ObservableCollection<CommentItem>();
         }
 
@@ -81,9 +88,26 @@ namespace HackerNews
                         this.txtTitle.Text = CurrentPost.title;
                         this.txtDescription.Text = CurrentPost.description;
 
-                        Comments.Clear();
+                        CommentsDataSource.Clear();
 
                         Flatten(CurrentPost.comments);
+
+                        if (CommentsDataSource.Count > maxResults)
+                        {
+                            for (int i = 0; i < maxResults; i++)
+                            {
+                                Comments.Add(CommentsDataSource[i]);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < CommentsDataSource.Count; i++)
+                            {
+                                Comments.Add(CommentsDataSource[i]);
+                            }
+                        }
+
+                        currentOffset = 0;
 
                         isLoaded = true;
 
@@ -140,9 +164,29 @@ namespace HackerNews
         {
             foreach (Comment item in enumerable)
             {
-                Comments.Add(new CommentItem(item));
+                CommentsDataSource.Add(new CommentItem(item));
 
                 Flatten(item.comments);
+            }
+        }
+
+        private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
+        {
+            if (this.lstComments.ItemsSource != null &&
+                this.lstComments.ItemsSource.Count >= maxResults)
+            {
+                if (e.ItemKind == LongListSelectorItemKind.Item)
+                {
+                    if ((e.Container.Content as CommentItem).Equals(this.lstComments.ItemsSource[this.lstComments.ItemsSource.Count - maxResults]))
+                    {
+                        // Comments.Clear();
+
+                        for (int i = currentOffset; i < currentOffset + maxResults; i++)
+                        {
+                            Comments.Add(CommentsDataSource[i]);
+                        }
+                    }
+                }
             }
         }
 
@@ -173,11 +217,17 @@ namespace HackerNews
 
             foreach (Match match in regEx.Matches(htmlFragment))
             {
-                if (match.Index >= nextOffset)
+                try
                 {
-                    AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
-                    nextOffset = match.Index + match.Length;
-                    AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
+                    if (match.Index >= nextOffset)
+                    {
+                        AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
+                        nextOffset = match.Index + match.Length;
+                        AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
+                    }
+                }
+                catch (Exception ex)
+                {
                 }
             }
 

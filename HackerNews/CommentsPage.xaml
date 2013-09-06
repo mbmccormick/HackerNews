@@ -35,18 +35,8 @@
         <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,2,12,-12">
-            <ListBox x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Margin="0,0,0,24" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
+            <phone:LongListSelector x:Name="lstComments" ItemsSource="{Binding Comments}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ItemRealized="lstComments_ItemRealized">
+                <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,0,12,24" Loaded="Comment_Loaded">
                             <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
@@ -54,8 +44,8 @@
                             <RichTextBox x:Name="txtRichContent" TextWrapping="Wrap" Margin="-12,0,-12,0" Foreground="#FF828282" />
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
 
             <TextBlock x:Name="txtEmpty" Margin="12,-6,0,0" Visibility="Collapsed" TextWrapping="Wrap" Text="There are no comments for this post yet." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
         </Grid>
