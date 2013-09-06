@@ -31,7 +31,7 @@ namespace HackerNews
 
             this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
 
-            // SetLinkedText(this.txtRichContent, this.txtPlainContent.Text);
+            // SetLinkedText(this.txtRichContent, item.content);
 
             // this.txtPlainContent.Visibility = System.Windows.Visibility.Collapsed;
         }
@@ -46,11 +46,17 @@ namespace HackerNews
 
             foreach (Match match in regEx.Matches(htmlFragment))
             {
-                if (match.Index >= nextOffset)
+                try
                 {
-                    AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
-                    nextOffset = match.Index + match.Length;
-                    AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
+                    if (match.Index >= nextOffset)
+                    {
+                        AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
+                        nextOffset = match.Index + match.Length;
+                        AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
+                    }
+                }
+                catch (Exception ex)
+                {
                 }
             }
 

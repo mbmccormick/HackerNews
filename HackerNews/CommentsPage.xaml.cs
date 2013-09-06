@@ -93,12 +93,11 @@ namespace HackerNews
 
                         Flatten(CurrentPost.comments);
 
-                        foreach (CommentItem item in CommentsDataSource)
+                        foreach (CommentItem item in CommentsDataSource.Take(maxResults))
                         {
                             Comments.Add(item);
+                            currentOffset++;
                         }
-
-                        currentOffset = 0;
 
                         isLoaded = true;
 
@@ -163,8 +162,6 @@ namespace HackerNews
 
         private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
-            return;
-
             if (Comments.Count < CommentsDataSource.Count)
             {
                 if (e.ItemKind == LongListSelectorItemKind.Item)
