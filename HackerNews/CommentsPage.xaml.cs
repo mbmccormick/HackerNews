@@ -98,6 +98,8 @@ namespace HackerNews
                             {
                                 Comments.Add(CommentsDataSource[i]);
                             }
+
+                            currentOffset += maxResults;
                         }
                         else
                         {
@@ -105,6 +107,8 @@ namespace HackerNews
                             {
                                 Comments.Add(CommentsDataSource[i]);
                             }
+
+                            currentOffset += CommentsDataSource.Count;
                         }
 
                         currentOffset = 0;
@@ -172,28 +176,12 @@ namespace HackerNews
 
         private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
-            if (this.lstComments.ItemsSource != null &&
-                this.lstComments.ItemsSource.Count >= maxResults)
+            if (Comments.Count < CommentsDataSource.Count)
             {
                 if (e.ItemKind == LongListSelectorItemKind.Item)
                 {
-                    if ((e.Container.Content as CommentItem).Equals(this.lstComments.ItemsSource[this.lstComments.ItemsSource.Count - maxResults]))
-                    {
-                        if (CommentsDataSource.Count > currentOffset + maxResults)
-                        {
-                            for (int i = currentOffset; i < currentOffset + maxResults; i++)
-                            {
-                                Comments.Add(CommentsDataSource[i]);
-                            }
-                        }
-                        else
-                        {
-                            for (int i = currentOffset; i < CommentsDataSource.Count; i++)
-                            {
-                                Comments.Add(CommentsDataSource[i]);
-                            }
-                        }
-                    }
+                    Comments.Add(CommentsDataSource[currentOffset + 1]);                    
+                    currentOffset++;
                 }
             }
         }
