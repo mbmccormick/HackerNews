@@ -88,27 +88,14 @@ namespace HackerNews
                         this.txtTitle.Text = CurrentPost.title;
                         this.txtDescription.Text = CurrentPost.description;
 
+                        Comments.Clear();
                         CommentsDataSource.Clear();
 
                         Flatten(CurrentPost.comments);
 
-                        if (CommentsDataSource.Count > maxResults)
+                        foreach (CommentItem item in CommentsDataSource)
                         {
-                            for (int i = 0; i < maxResults; i++)
-                            {
-                                Comments.Add(CommentsDataSource[i]);
-                            }
-
-                            currentOffset += maxResults;
-                        }
-                        else
-                        {
-                            for (int i = 0; i < CommentsDataSource.Count; i++)
-                            {
-                                Comments.Add(CommentsDataSource[i]);
-                            }
-
-                            currentOffset += CommentsDataSource.Count;
+                            Comments.Add(item);
                         }
 
                         currentOffset = 0;
@@ -176,113 +163,16 @@ namespace HackerNews
 
         private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
+            return;
+
             if (Comments.Count < CommentsDataSource.Count)
             {
                 if (e.ItemKind == LongListSelectorItemKind.Item)
                 {
-                    Comments.Add(CommentsDataSource[currentOffset + 1]);                    
+                    Comments.Add(CommentsDataSource[currentOffset]);                    
                     currentOffset++;
                 }
             }
         }
-
-        #region Comment Control Methods
-
-        private void Comment_Loaded(object sender, RoutedEventArgs e)
-        {
-            StackPanel target = (StackPanel)sender;
-
-            CommentItem item = target.DataContext as CommentItem;
-
-            target.Margin = new Thickness(12 * item.level, 0, 12, 24);
-
-            RichTextBox txtRichContent = target.FindName("txtRichContent") as RichTextBox;
-            SetLinkedText(txtRichContent, item.content);
-
-            TextBlock txtPlainContent = target.FindName("txtPlainContent") as TextBlock;
-            txtPlainContent.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private static void SetLinkedText(RichTextBox richTextBox, string htmlFragment)
-        {
-            var regEx = new Regex(@"\<a\s(href\=""|[^\>]+?\shref\="")(?<link>[^""]+)"".*?\>(?<text>.*?)(\<\/a\>|$)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-            richTextBox.Blocks.Clear();
-
-            int nextOffset = 0;
-
-            foreach (Match match in regEx.Matches(htmlFragment))
-            {
-                try
-                {
-                    if (match.Index >= nextOffset)
-                    {
-                        AppendText(richTextBox, htmlFragment.Substring(nextOffset, match.Index - nextOffset));
-                        nextOffset = match.Index + match.Length;
-                        AppendLink(richTextBox, match.Groups["text"].Value, new Uri(match.Groups["link"].Value, UriKind.Absolute));
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-
-            if (nextOffset < htmlFragment.Length)
-            {
-                AppendText(richTextBox, htmlFragment.Substring(nextOffset));
-            }
-        }
-
-        private static void AppendText(RichTextBox richTextBox, string text)
-        {
-            Paragraph paragraph;
-
-            if (richTextBox.Blocks.Count == 0 ||
-                (paragraph = richTextBox.Blocks[richTextBox.Blocks.Count - 1] as Paragraph) == null)
-            {
-                paragraph = new Paragraph();
-                richTextBox.Blocks.Add(paragraph);
-            }
-
-            paragraph.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
-
-            paragraph.Inlines.Add(new Run { Text = text });
-        }
-
-        private static void AppendLink(RichTextBox richTextBox, string text, Uri uri)
-        {
-            Paragraph paragraph;
-
-            if (richTextBox.Blocks.Count == 0 ||
-                (paragraph = richTextBox.Blocks[richTextBox.Blocks.Count - 1] as Paragraph) == null)
-            {
-                paragraph = new Paragraph();
-                richTextBox.Blocks.Add(paragraph);
-            }
-
-            paragraph.Foreground = new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
-
-            var run = new Run { Text = text };
-            var link = new Hyperlink { NavigateUri = uri };
-
-            link.Click += Hyperlink_Click;
-            link.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 102, 0));
-            link.MouseOverForeground = new SolidColorBrush(Color.FromArgb(255, 255, 102, 0));
-
-            link.Inlines.Add(run);
-            paragraph.Inlines.Add(link);
-        }
-
-        private static void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            Hyperlink item = sender as Hyperlink;
-
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
-            webBrowserTask.Uri = new Uri(item.NavigateUri.AbsoluteUri, UriKind.Absolute);
-
-            webBrowserTask.Show();
-        }
-
-        #endregion
     }
 }
