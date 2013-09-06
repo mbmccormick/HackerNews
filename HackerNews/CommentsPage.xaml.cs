@@ -179,11 +179,19 @@ namespace HackerNews
                 {
                     if ((e.Container.Content as CommentItem).Equals(this.lstComments.ItemsSource[this.lstComments.ItemsSource.Count - maxResults]))
                     {
-                        // Comments.Clear();
-
-                        for (int i = currentOffset; i < currentOffset + maxResults; i++)
+                        if (CommentsDataSource.Count > currentOffset + maxResults)
                         {
-                            Comments.Add(CommentsDataSource[i]);
+                            for (int i = currentOffset; i < currentOffset + maxResults; i++)
+                            {
+                                Comments.Add(CommentsDataSource[i]);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = currentOffset; i < CommentsDataSource.Count; i++)
+                            {
+                                Comments.Add(CommentsDataSource[i]);
+                            }
                         }
                     }
                 }
