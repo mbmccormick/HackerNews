@@ -30,10 +30,6 @@ namespace HackerNews
             CommentItem item = this.DataContext as CommentItem;
 
             this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
-
-            // SetLinkedText(this.txtRichContent, item.content);
-
-            // this.txtPlainContent.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Hyperlink_Click(object sender, NavigationEventArgs e)

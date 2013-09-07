@@ -279,11 +279,13 @@ namespace HackerNews.API
             data = data.Replace("&euro;", "...");
             data = data.Replace("__BR__", "\n\n");
             data = data.Replace("\\", "");
-            data = data.Replace("<p>", "\n\n");
-            data = data.Replace("<i>", "");
-            data = data.Replace("</i>", "");
-            data = data.Replace("&gt;", ">");
-            data = data.Replace("&lt;", "<");
+
+            if (data.StartsWith("<p>"))
+                data = data.Substring(3);
+
+            if (data.EndsWith("<p>"))
+                data = data.Substring(0, data.Length - 3);
+
             data = data.Trim();
 
             return data;
