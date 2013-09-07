@@ -747,7 +747,6 @@ namespace Krempel.WP7.Core.Controls
             }
         }
 
-
         private string DecodeAndCleanupHtml(string html)
         {
             StringBuilder builder = new StringBuilder();

@@ -106,7 +106,7 @@ namespace HackerNews.API
             callback(data);
         }
 
-        public async Task etAskPosts(Action<List<Post>> callback)
+        public async Task GetAskPosts(Action<List<Post>> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/ask") as HttpWebRequest;
             request.Accept = "application/json";
