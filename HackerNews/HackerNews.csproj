@@ -193,6 +193,10 @@
       <Project>{917063A1-7827-4A9F-A7B6-BC0D625817CE}</Project>
       <Name>HackerNews.API</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Krempel.WP7.Core\Krempel.WP7.Core.csproj">
+      <Project>{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}</Project>
+      <Name>Krempel.WP7.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews", "HackerNews\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.API", "HackerNews.API\HackerNews.API.csproj", "{917063A1-7827-4A9F-A7B6-BC0D625817CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krempel.WP7.Core", "Krempel.WP7.Core\Krempel.WP7.Core.csproj", "{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x86 = Release|x86
+		ReleaseAzure|Any CPU = ReleaseAzure|Any CPU
+		ReleaseAzure|ARM = ReleaseAzure|ARM
+		ReleaseAzure|x86 = ReleaseAzure|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,6 +38,15 @@ Global
 		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.ActiveCfg = Release|x86
 		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.Build.0 = Release|x86
 		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.Release|x86.Deploy.0 = Release|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|Any CPU.ActiveCfg = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|Any CPU.Build.0 = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|Any CPU.Deploy.0 = Release|Any CPU
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|ARM.ActiveCfg = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|ARM.Build.0 = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|ARM.Deploy.0 = Release|ARM
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|x86.ActiveCfg = Release|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|x86.Build.0 = Release|x86
+		{323ED406-9DA6-41FC-916C-95F11EA2A3E1}.ReleaseAzure|x86.Deploy.0 = Release|x86
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -45,6 +59,24 @@ Global
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|ARM.Build.0 = Release|ARM
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|x86.ActiveCfg = Release|x86
 		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.Release|x86.Build.0 = Release|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|Any CPU.ActiveCfg = Release|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|Any CPU.Build.0 = Release|Any CPU
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|ARM.ActiveCfg = Release|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|ARM.Build.0 = Release|ARM
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|x86.ActiveCfg = Release|x86
+		{917063A1-7827-4A9F-A7B6-BC0D625817CE}.ReleaseAzure|x86.Build.0 = Release|x86
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.ReleaseAzure|Any CPU.ActiveCfg = ReleaseAzure|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.ReleaseAzure|Any CPU.Build.0 = ReleaseAzure|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.ReleaseAzure|ARM.ActiveCfg = ReleaseAzure|Any CPU
+		{A4771628-1D6A-45D6-B1DC-360D6B1C78DA}.ReleaseAzure|x86.ActiveCfg = ReleaseAzure|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

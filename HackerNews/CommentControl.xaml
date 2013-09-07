@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:uc="clr-namespace:HackerNews"
+    xmlns:kc="clr-namespace:Krempel.WP7.Core.Controls;assembly=Krempel.WP7.Core"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -13,7 +14,6 @@
 
     <StackPanel x:Name="LayoutRoot" Background="Transparent">
         <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
-        <TextBlock Name="txtPlainContent" Text="{Binding content}" TextWrapping="Wrap" Margin="0,0,0,-24" Foreground="#FF828282" />
-        <RichTextBox Name="txtRichContent" TextWrapping="Wrap" Margin="-12,0,-12,0" Foreground="#FF828282" />
+        <kc:HtmlTextBlock Html="{Binding content}" NavigationRequested="Hyperlink_Click" Margin="-12,0,-12,0" />
     </StackPanel>
 </UserControl>
