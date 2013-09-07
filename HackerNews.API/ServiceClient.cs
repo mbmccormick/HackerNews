@@ -55,7 +55,7 @@ namespace HackerNews.API
 
             foreach (var item in data)
             {
-                item.title = CleanText(item.title);
+                item.title = CleanTitleText(item.title);
                 item.is_read = PostHistory.Contains(item.id);
 
                 if (item.url.StartsWith("http") == false)
@@ -91,7 +91,7 @@ namespace HackerNews.API
 
             foreach (var item in data)
             {
-                item.title = CleanText(item.title);
+                item.title = CleanTitleText(item.title);
                 item.is_read = PostHistory.Contains(item.id);
 
                 if (item.url.StartsWith("http") == false)
@@ -127,7 +127,7 @@ namespace HackerNews.API
 
             foreach (var item in data)
             {
-                item.title = CleanText(item.title);
+                item.title = CleanTitleText(item.title);
                 item.is_read = PostHistory.Contains(item.id);
 
                 if (item.url.StartsWith("http") == false)
@@ -252,7 +252,7 @@ namespace HackerNews.API
             return data;
         }
 
-        private string CleanText(string data)
+        private string CleanTitleText(string data)
         {
             data = data.Replace("�", "");
             data = data.Replace("&amp;", "");
@@ -264,9 +264,38 @@ namespace HackerNews.API
             data = data.Replace("&euro;", "...");
             data = data.Replace("__BR__", "\n\n");
             data = data.Replace("\\", "");
+            data = data.Trim();
 
-            if (data.StartsWith("<p>"))
-                data = data.Substring(3);
+            return data;
+        }
+
+        private string CleanContentText(string data)
+        {
+            if (data.StartsWith("<p>") == false)
+                data = "<p>" + data;
+
+            if (data.EndsWith("</p>") == false)
+                data = data + "</p>";
+
+            data = data.Replace("�", "");
+            data = data.Replace("&amp;", "");
+            data = data.Replace("&euro;&trade;", "'");
+            data = data.Replace("&euro;&oelig;", "\"");
+            data = data.Replace("&euro;?", "\"");
+            data = data.Replace("&euro;&ldquo;", "-");
+            data = data.Replace("&euro;&tilde;", "'");
+            data = data.Replace("&euro;", "...");
+            data = data.Replace("__BR__", "<br>");
+            data = data.Replace("\\", "");
+            data = data.Replace("<code>", "<pre>");
+            data = data.Replace("</code>", "</pre>");
+            data = data.Replace("<pre><pre>", "<pre>");
+            data = data.Replace("</pre></pre>", "</pre>");
+
+            data = data.Replace("<p>", "</p><p>");
+
+            if (data.StartsWith("</p>"))
+                data = data.Substring(4);
 
             if (data.EndsWith("<p>"))
                 data = data.Substring(0, data.Length - 3);
@@ -278,10 +307,10 @@ namespace HackerNews.API
 
         private Comment CleanCommentText(Comment data)
         {
-            data.content = CleanText(data.content);
+            data.content = CleanContentText(data.content);
 
             foreach (var item in data.comments)
-                CleanText(CleanCommentText(item).content);
+                CleanContentText(CleanCommentText(item).content);
 
             return data;
         }

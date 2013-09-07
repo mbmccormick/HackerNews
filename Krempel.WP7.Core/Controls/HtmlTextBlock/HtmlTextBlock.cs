@@ -480,6 +480,9 @@ namespace Krempel.WP7.Core.Controls
                 case "u":
                     AppendUnderline(node, paragraph, span);
                     break;
+                case "pre":
+                    AppendPre(node, paragraph, span);
+                    break;
                 case "#text":
                     AppendRun(node, paragraph, span);
                     break;
@@ -719,6 +722,23 @@ namespace Krempel.WP7.Core.Controls
             else if (paragraph != null)
             {
                 paragraph.Inlines.Add(underline);
+            }
+
+            AppendChildren(node, paragraph, span);
+        }
+
+        private void AppendPre(HtmlNode node, Paragraph paragraph, Span span)
+        {
+            Run pre = new Run();
+            pre.FontFamily = new FontFamily("Courier");
+
+            if (span != null)
+            {
+                span.Inlines.Add(pre);
+            }
+            else if (paragraph != null)
+            {
+                paragraph.Inlines.Add(pre);
             }
 
             AppendChildren(node, paragraph, span);
