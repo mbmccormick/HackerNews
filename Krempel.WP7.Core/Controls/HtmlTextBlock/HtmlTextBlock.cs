@@ -386,6 +386,8 @@ namespace Krempel.WP7.Core.Controls
 
         private void AppendHtml(string html)
         {
+            Debug.WriteLine(html);
+
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(html);
             if (textBoxes == null)

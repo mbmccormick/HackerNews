@@ -31,15 +31,5 @@ namespace HackerNews
 
             this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
         }
-
-        private void Hyperlink_Click(object sender, NavigationEventArgs e)
-        {
-            Hyperlink item = sender as Hyperlink;
-
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
-            webBrowserTask.Uri = new Uri(item.NavigateUri.AbsoluteUri, UriKind.Absolute);
-
-            webBrowserTask.Show();
-        }
     }
 }

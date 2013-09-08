@@ -291,11 +291,11 @@ namespace HackerNews.API
             data = data.Replace("</code>", "</pre>");
             data = data.Replace("<pre><pre>", "<pre>");
             data = data.Replace("</pre></pre>", "</pre>");
-
             data = data.Replace("<p>", "</p><p>");
+            data = data.Replace("<p></p>", "");
+            data = data.Replace("</p><p>", "\n</p><p>");
 
-            if (data.StartsWith("</p>"))
-                data = data.Substring(4);
+            data = data.Substring(5);
 
             if (data.EndsWith("<p>"))
                 data = data.Substring(0, data.Length - 3);
