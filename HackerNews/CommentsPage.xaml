@@ -79,7 +79,7 @@
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
 
-            <TextBlock x:Name="txtEmpty" Margin="12,-6,0,0" Visibility="Collapsed" TextWrapping="Wrap" Text="There are no comments for this post yet." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+            <TextBlock x:Name="txtEmpty" Margin="0,-6,0,0" Visibility="Collapsed" TextWrapping="Wrap" Text="There are no comments for this post yet." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
         </Grid>
     </Grid>
 

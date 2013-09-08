@@ -3,6 +3,7 @@ using HackerNews.API.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -26,12 +27,15 @@ namespace HackerNews.API
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
 
-        public ServiceClient()
+        public ServiceClient(bool debug)
         {
             PostHistory = IsolatedStorageHelper.GetObject<List<string>>("PostHistory");
 
             if (PostHistory == null)
                 PostHistory = new List<string>();
+
+            if (debug == true)
+                serverAddress = "node--hnapi-herokuapp-com-86lzpdm4xgow.runscope.net";
         }
 
         public async Task GetTopPosts(Action<List<Post>> callback)
@@ -170,7 +174,7 @@ namespace HackerNews.API
             {
                 Comment child = new Comment();
 
-                child.comments = null;
+                child.comments = new List<Comment>();
                 child.content = data.content;
                 child.id = null;
                 child.level = 0;
