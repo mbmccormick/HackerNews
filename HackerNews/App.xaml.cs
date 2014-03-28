@@ -43,10 +43,10 @@ namespace HackerNews
 
             ((SolidColorBrush)Resources["PhoneAccentBrush"]).Color = Color.FromArgb(255, 255, 102, 0);
 
-            Resources.Remove("PhoneForegroundColor");
-            Resources.Add("PhoneForegroundColor", Color.FromArgb(255, 130, 130, 130));
+            //Resources.Remove("PhoneForegroundColor");
+            //Resources.Add("PhoneForegroundColor", Color.FromArgb(255, 130, 130, 130));
 
-            ((SolidColorBrush)Resources["PhoneForegroundBrush"]).Color = Color.FromArgb(255, 130, 130, 130);
+            //((SolidColorBrush)Resources["PhoneForegroundBrush"]).Color = Color.FromArgb(255, 130, 130, 130);
 
             Resources.Remove("PhoneBackgroundColor");
             Resources.Add("PhoneBackgroundColor", Color.FromArgb(255, 246, 246, 239));
