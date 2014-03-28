@@ -23,36 +23,6 @@ namespace HackerNews
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
 
-        public static string VersionNumber
-        {
-            get
-            {
-                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
-
-                return version[0] + "." + version[1];
-            }
-        }
-
-        public static string ExtendedVersionNumber
-        {
-            get
-            {
-                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
-
-                return version[0] + "." + version[1] + "." + version[2];
-            }
-        }
-
-        public static string PlatformVersionNumber
-        {
-            get
-            {
-                return System.Environment.OSVersion.Version.ToString(3);
-            }
-        }
-
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
         public App()
@@ -90,8 +60,6 @@ namespace HackerNews
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SmartDispatcher.Initialize(RootFrame.Dispatcher);
-
-            this.PromptForMarketplaceReview();
         }
 
         private void Application_Activated(object sender, ActivatedEventArgs e)
@@ -136,54 +104,6 @@ namespace HackerNews
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
             }
-        }
-
-        private void PromptForMarketplaceReview()
-        {
-            string currentVersion = IsolatedStorageHelper.GetObject<string>("CurrentVersion");
-            if (currentVersion == null)
-                currentVersion = App.VersionNumber;
-
-            DateTime installDate = IsolatedStorageHelper.GetObject<DateTime>("InstallDate");
-            if (installDate == DateTime.MinValue)
-                installDate = DateTime.UtcNow;
-
-            if (currentVersion != App.VersionNumber) // override if this is a new version
-                installDate = DateTime.UtcNow;
-
-            if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
-            {
-                CustomMessageBox messageBox = new CustomMessageBox()
-                {
-                    Caption = "Review Hacker News",
-                    Message = "It's been a few days since you downloaded Hacker News. Would you like to write a review for it in the Windows Phone Store?",
-                    LeftButtonContent = "yes",
-                    RightButtonContent = "no",
-                    IsFullScreen = false
-                };
-
-                messageBox.Dismissed += (s1, e1) =>
-                {
-                    switch (e1.Result)
-                    {
-                        case CustomMessageBoxResult.LeftButton:
-                            MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
-                            marketplaceReviewTask.Show();
-
-                            installDate = DateTime.MaxValue; // they have rated, don't prompt again
-
-                            break;
-                        default:
-                            installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
-                            break;
-                    }
-                };
-
-                messageBox.Show();
-            }
-
-            IsolatedStorageHelper.SaveObject<string>("CurrentVersion", App.VersionNumber); // save current version of application
-            IsolatedStorageHelper.SaveObject<DateTime>("InstallDate", installDate); // save install date
         }
 
         #region Phone application initialization

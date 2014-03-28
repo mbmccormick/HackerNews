@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.IO.IsolatedStorage;
 using System.IO;
-using Microsoft.Phone.Tasks;
+using System.IO.IsolatedStorage;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace HackerNews.Common
 {
@@ -79,14 +70,9 @@ namespace HackerNews.Common
                         switch (e1.Result)
                         {
                             case CustomMessageBoxResult.LeftButton:
-                                EmailComposeTask email = new EmailComposeTask();
-                                email.To = App.FeedbackEmailAddress;
-                                email.Subject = "Hacker News Error Report";
-                                email.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
+                                FeedbackHelper.Default.Feedback(contents, true);
 
                                 SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
-
-                                email.Show();
 
                                 break;
                             default:

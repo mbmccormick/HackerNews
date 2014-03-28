@@ -114,12 +114,7 @@ namespace HackerNews
         {
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
 
-            EmailComposeTask emailComposeTask = new EmailComposeTask();
-
-            emailComposeTask.To = App.FeedbackEmailAddress;
-            emailComposeTask.Subject = "Hacker News Feedback";
-            emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
-            emailComposeTask.Show();
+            FeedbackHelper.Default.Feedback();
         }
 
         private void About_Click(object sender, EventArgs e)

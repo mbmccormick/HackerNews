@@ -1,24 +1,9 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>HtmlAgilityPack</name>
+        <name>HtmlAgilityPack-PCL</name>
     </assembly>
     <members>
-        <member name="T:HtmlAgilityPack.HtmlDocumentLoadCompleted">
-            <summary>
-            Happens when a document has been loaded
-            </summary>
-        </member>
-        <member name="F:HtmlAgilityPack.HtmlDocumentLoadCompleted.Error">
-            <summary>
-            If an error occured when loading the document, null if not
-            </summary>
-        </member>
-        <member name="P:HtmlAgilityPack.HtmlDocumentLoadCompleted.Document">
-            <summary>
-            The document that has been loaded
-            </summary>
-        </member>
         <member name="T:HtmlAgilityPack.Crc32">
             <summary>
             A utility class to compute CRC32.
@@ -1464,91 +1449,6 @@
         <member name="P:HtmlAgilityPack.HtmlTextNode.Text">
             <summary>
             Gets or Sets the text of the node.
-            </summary>
-        </member>
-        <member name="T:HtmlAgilityPack.HtmlWebException">
-            <summary>
-            Represents an exception thrown by the HtmlWeb utility class.
-            </summary>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWebException.#ctor(System.String)">
-            <summary>
-            Creates an instance of the HtmlWebException.
-            </summary>
-            <param name="message">The exception's message.</param>
-        </member>
-        <member name="T:HtmlAgilityPack.HtmlWeb">
-            <summary>
-            Used for downloading and parsing html from the internet
-            </summary>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="encoding">The encoding to use while downloading the document</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="encoding">The encoding to use while downloading the document</param>
-            <param name="userName">Username to use for credentials in the web request</param>
-            <param name="password">Password to use for credentials in the web request</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Text.Encoding,System.String,System.String,System.String)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="encoding">The encoding to use while downloading the document</param>
-            <param name="userName">Username to use for credentials in the web request</param>
-            <param name="password">Password to use for credentials in the web request</param>
-            <param name="domain">Domain to use for credentials in the web request</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String,System.String)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="userName">Username to use for credentials in the web request</param>
-            <param name="password">Password to use for credentials in the web request</param>
-            <param name="domain">Domain to use for credentials in the web request</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.String,System.String)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="userName">Username to use for credentials in the web request</param>
-            <param name="password">Password to use for credentials in the web request</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.String,System.Net.NetworkCredential)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="url">Url to the html document</param>
-            <param name="credentials">The credentials to use for authenticating the web request</param>
-        </member>
-        <member name="M:HtmlAgilityPack.HtmlWeb.LoadFromWebAsync(System.Uri,System.Text.Encoding,System.Net.NetworkCredential)">
-            <summary>
-            Begins the process of downloading an internet resource
-            </summary>
-            <param name="uri">Url to the html document</param>
-            <param name="encoding">The encoding to use while downloading the document</param>
-            <param name="credentials">The credentials to use for authenticating the web request</param>
-        </member>
-        <member name="P:HtmlAgilityPack.HtmlWeb.PreHandleDocument">
-            <summary>
-            Allows for setting document defaults before loading
             </summary>
         </member>
     </members>

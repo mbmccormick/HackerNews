@@ -93,7 +93,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CommentControl.xaml.cs">
+    <Compile Include="Common\FeedbackHelper.cs" />
+    <Compile Include="Controls\CommentControl.xaml.cs">
       <DependentUpon>CommentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CommentsPage.xaml.cs">
@@ -104,12 +105,11 @@
     <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\NavigationCommand.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
-    <Compile Include="Models\CommentItem.cs" />
-    <Compile Include="PostControl.xaml.cs">
+    <Compile Include="Controls\PostControl.xaml.cs">
       <DependentUpon>PostControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PostsPage.xaml.cs">
-      <DependentUpon>PostsPage.xaml</DependentUpon>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
@@ -160,7 +160,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CommentControl.xaml">
+    <Page Include="Controls\CommentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,11 +172,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
-    <Page Include="PostControl.xaml">
+    <Page Include="Controls\PostControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PostsPage.xaml">
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
