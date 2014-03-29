@@ -27,6 +27,8 @@ namespace HackerNews.API
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
 
+        public string NextTopPosts = null;
+
         public ServiceClient(bool debug)
         {
             PostHistory = IsolatedStorageHelper.GetObject<List<string>>("PostHistory");
@@ -40,7 +42,20 @@ namespace HackerNews.API
 
         public async Task GetTopPosts(Action<List<Post>> callback)
         {
-            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/news") as HttpWebRequest;
+            NextTopPosts = "/news";
+
+            await GetNextTopPosts(callback);
+        }
+
+        public async Task GetNextTopPosts(Action<List<Post>> callback)
+        {
+            if (NextTopPosts == "/news3")
+            {
+                callback(new List<Post>());
+                return;
+            }
+
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + NextTopPosts) as HttpWebRequest;
             request.Accept = "application/json";
 
             var response = await request.GetResponseAsync().ConfigureAwait(false);
@@ -70,6 +85,9 @@ namespace HackerNews.API
             {
                 data[i] = FormatPost(data[i]);
             }
+
+            int index = NextTopPosts == "/news" ? 2 : Convert.ToInt32(NextTopPosts.Replace("/news", "")) + 1;
+            NextTopPosts = "/news" + index;
 
             callback(data);
         }

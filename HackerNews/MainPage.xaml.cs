@@ -149,31 +149,6 @@ namespace HackerNews
             });
         }
 
-        private void Refresh_Click(object sender, EventArgs e)
-        {
-            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
-
-            isTopLoaded = false;
-            isNewLoaded = false;
-            isAskLoaded = false;
-
-            LoadData();
-        }
-
-        private void Feedback_Click(object sender, EventArgs e)
-        {
-            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
-
-            FeedbackHelper.Default.Feedback();
-        }
-
-        private void About_Click(object sender, EventArgs e)
-        {
-            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
-
-            NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
-        }
-
         private void ToggleLoadingText()
         {
             this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
@@ -201,6 +176,80 @@ namespace HackerNews
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
+            isTopLoaded = false;
+            isNewLoaded = false;
+            isAskLoaded = false;
+
+            LoadData();
+        }
+
+        private void Feedback_Click(object sender, EventArgs e)
+        {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
+            FeedbackHelper.Default.Feedback();
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
+            NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private int _offsetKnob = 5;
+
+        private void LongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
+        {
+            if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
+
+            LongListSelector target = (LongListSelector)sender;
+
+            if (target.ItemsSource != null &&
+                target.ItemsSource.Count >= _offsetKnob)
+            {
+                if (e.ItemKind == LongListSelectorItemKind.Item)
+                {
+                    if ((e.Container.Content as Post).Equals(target.ItemsSource[target.ItemsSource.Count - _offsetKnob]))
+                    {
+                        this.prgLoading.Visibility = System.Windows.Visibility.Visible;
+
+                        if (target == this.lstTopPosts)
+                        {
+                            App.HackerNewsClient.GetNextTopPosts((result) =>
+                            {
+                                SmartDispatcher.BeginInvoke(() =>
+                                {
+                                    foreach (Post item in result)
+                                    {
+                                        TopPosts.Add(item);
+                                    }
+
+                                    this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+                                });
+                            });
+                        }
+                        else if (target == this.lstNewPosts)
+                        {
+                            this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+                        }
+                        else if (target == this.lstAskPosts)
+                        {
+                            this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LongListSelector_ItemUnrealized(object sender, ItemRealizationEventArgs e)
+        {
         }
     }
 }
