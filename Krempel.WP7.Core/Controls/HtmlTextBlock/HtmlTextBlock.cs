@@ -34,6 +34,13 @@ namespace Krempel.WP7.Core.Controls
             HyperlinkFontWeightProperty = DependencyProperty.Register("HyperlinkFontWeight", typeof(FontWeight), typeof(HtmlTextBlock), new PropertyMetadata(null));
             HyperlinkForegroundProperty = DependencyProperty.Register("HyperlinkForeground", typeof(Brush), typeof(HtmlTextBlock), new PropertyMetadata(null));
 
+            DefaultFontFamilyProperty = DependencyProperty.Register("FontFamily", typeof(FontFamily), typeof(HtmlTextBlock), new PropertyMetadata(null));
+            DefaultFontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(HtmlTextBlock), new PropertyMetadata(null));
+            DefaultFontStretchProperty = DependencyProperty.Register("FontStretch", typeof(FontStretch), typeof(HtmlTextBlock), new PropertyMetadata(null));
+            DefaultFontStyleProperty = DependencyProperty.Register("FontStyle", typeof(FontStyle), typeof(HtmlTextBlock), new PropertyMetadata(null));
+            DefaultFontWeightProperty = DependencyProperty.Register("FontWeight", typeof(FontWeight), typeof(HtmlTextBlock), new PropertyMetadata(null));
+            DefaultForegroundProperty = DependencyProperty.Register("Foreground", typeof(Brush), typeof(HtmlTextBlock), new PropertyMetadata(null));
+
             H1FontFamilyProperty = DependencyProperty.Register("H1FontFamily", typeof(FontFamily), typeof(HtmlTextBlock), new PropertyMetadata(null));
             H1FontSizeProperty = DependencyProperty.Register("H1FontSize", typeof(double), typeof(HtmlTextBlock), new PropertyMetadata(null));
             H1FontStretchProperty = DependencyProperty.Register("H1FontStretch", typeof(FontStretch), typeof(HtmlTextBlock), new PropertyMetadata(null));
@@ -186,6 +193,58 @@ namespace Krempel.WP7.Core.Controls
         {
             get { return (Brush)GetValue(HyperlinkForegroundProperty); }
             set { SetValue(HyperlinkForegroundProperty, value); }
+        }
+
+        #endregion
+
+        #region DefaultFontProperties
+
+        public static readonly DependencyProperty DefaultFontFamilyProperty;
+
+        public FontFamily DefaultFontFamily
+        {
+            get { return (FontFamily)GetValue(DefaultFontFamilyProperty); }
+            set { SetValue(DefaultFontFamilyProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultFontSizeProperty;
+
+        public double DefaultFontSize
+        {
+            get { return (double)GetValue(DefaultFontSizeProperty); }
+            set { SetValue(DefaultFontSizeProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultFontStretchProperty;
+
+        public FontStretch DefaultFontStretch
+        {
+            get { return (FontStretch)GetValue(DefaultFontStretchProperty); }
+            set { SetValue(DefaultFontStretchProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultFontStyleProperty;
+
+        public FontStyle DefaultFontStyle
+        {
+            get { return (FontStyle)GetValue(DefaultFontStyleProperty); }
+            set { SetValue(DefaultFontStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultFontWeightProperty;
+
+        public FontWeight DefaultFontWeight
+        {
+            get { return (FontWeight)GetValue(DefaultFontWeightProperty); }
+            set { SetValue(DefaultFontWeightProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultForegroundProperty;
+
+        public Brush DefaultForeground
+        {
+            get { return (Brush)GetValue(DefaultForegroundProperty); }
+            set { SetValue(DefaultForegroundProperty, value); }
         }
 
         #endregion
@@ -755,6 +814,27 @@ namespace Krempel.WP7.Core.Controls
             else
             {
                 run.Text = DecodeAndCleanupHtml(node.InnerText);
+            }
+
+            if (run.Text.ToLower().StartsWith("http") == false)
+            {
+                if (this.FontFamily != DefaultFontFamily)
+                    run.FontFamily = DefaultFontFamily;
+
+                if (this.FontSize != DefaultFontSize)
+                    run.FontSize = DefaultFontSize;
+
+                if (this.FontStretch != DefaultFontStretch)
+                    run.FontStretch = DefaultFontStretch;
+
+                if (this.FontStyle != DefaultFontStyle)
+                    run.FontStyle = DefaultFontStyle;
+
+                if (this.FontWeight != DefaultFontWeight)
+                    run.FontWeight = DefaultFontWeight;
+
+                if (this.Foreground != DefaultForeground)
+                    run.Foreground = DefaultForeground;
             }
             
             if (span != null)

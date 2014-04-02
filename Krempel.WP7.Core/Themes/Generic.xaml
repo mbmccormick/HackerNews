@@ -8,9 +8,11 @@
         <Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource PhoneTextBoxBrush}"/>
         <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+        
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-        <Setter Property="Foreground" Value="{StaticResource PhoneTextBoxForegroundBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#FF828282"/>
 
         <Setter Property="H1Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
         <Setter Property="H1FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
