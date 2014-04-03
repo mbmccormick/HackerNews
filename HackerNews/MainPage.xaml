@@ -59,7 +59,7 @@
         <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
 
         <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
-            <phone:PivotItem Header="top">
+            <phone:PivotItem Header="top" Margin="12,28,0,0">
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
@@ -76,7 +76,7 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="new">
+            <phone:PivotItem Header="new" Margin="12,28,0,0">
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
@@ -93,7 +93,7 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="ask">
+            <phone:PivotItem Header="ask" Margin="12,28,0,0">
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
