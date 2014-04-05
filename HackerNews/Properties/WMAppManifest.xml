@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{323ed406-9da6-41fc-916c-95f11ea2a3e1}" Title="Hacker News" RuntimeType="Silverlight" Version="1.1.5.0" Genre="apps.normal" Author="Matt McCormick" Description="Hacker News for Windows Phone" Publisher="Matt McCormick" PublisherID="{4af0212d-81cc-440a-88ac-8704dff68d18}">
+  <App xmlns="" ProductID="{323ed406-9da6-41fc-916c-95f11ea2a3e1}" Title="Hacker News" RuntimeType="Silverlight" Version="1.1.6.0" Genre="apps.normal" Author="Matt McCormick" Description="Hacker News for Windows Phone" Publisher="Matt McCormick" PublisherID="{4af0212d-81cc-440a-88ac-8704dff68d18}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
