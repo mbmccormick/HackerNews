@@ -30,7 +30,7 @@
         </StackPanel>
 
         <toolkit:ContextMenuService.ContextMenu>
-            <toolkit:ContextMenu>
+            <toolkit:ContextMenu Background="#FFFFFFFF">
                 <toolkit:MenuItem Header="share" Foreground="#FF000000" Click="Share_Click" />
             </toolkit:ContextMenu>
         </toolkit:ContextMenuService.ContextMenu>
