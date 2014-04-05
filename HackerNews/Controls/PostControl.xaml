@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,18 +16,24 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostControl_Tap">
+        <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostContent_Tap">
             <TextBlock Name="txtTitle" Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="{Binding title_foreground}" />
             <TextBlock Name="txtDescription" Text="{Binding description}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding description_foreground}" />
         </StackPanel>
 
-        <StackPanel Name="stkCommentCount" Grid.Column="1" Margin="0,-8,-6,0" Width="58" Tap="CommentCount_Tap">
+        <StackPanel Name="stkCommentCount" Grid.Column="1" Margin="0,-8,-6,0" Width="58" Tap="Comments_Tap">
             <Canvas x:Name="Layer_4">
                 <Path Fill="{Binding comment_fill}" Data="F1 M8.4,10.2L8.4,40.2 15,40.2 15,50.0778 30.5022,40.2 51.6,40.2 51.6,10.2z" />
             </Canvas>
 
-            <TextBlock Text="{Binding comments_count}" HorizontalAlignment="Center" Margin="2,12,0,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" Tap="CommentCount_Tap" />
+            <TextBlock Text="{Binding comments_count}" HorizontalAlignment="Center" Margin="2,12,0,0" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" Tap="Comments_Tap" />
         </StackPanel>
+
+        <toolkit:ContextMenuService.ContextMenu>
+            <toolkit:ContextMenu>
+                <toolkit:MenuItem Header="share" Foreground="#FF000000" Click="Share_Click" />
+            </toolkit:ContextMenu>
+        </toolkit:ContextMenuService.ContextMenu>
     </Grid>
 
 </UserControl>

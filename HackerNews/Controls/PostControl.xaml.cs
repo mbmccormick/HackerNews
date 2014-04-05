@@ -30,7 +30,7 @@ namespace HackerNews
                 this.stkCommentCount.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void PostControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void PostContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
@@ -51,7 +51,7 @@ namespace HackerNews
             item.is_read = true;
         }
 
-        private void CommentCount_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Comments_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Post item = ((FrameworkElement)sender).DataContext as Post;
 
@@ -64,6 +64,18 @@ namespace HackerNews
             }
 
             App.RootFrame.Navigate(new Uri("/CommentsPage.xaml?id=" + item.id, UriKind.Relative));
+        }
+
+        private void Share_Click(object sender, RoutedEventArgs e)
+        {
+            Post item = ((FrameworkElement)sender).DataContext as Post;
+
+            ShareLinkTask shareLinkTask = new ShareLinkTask();
+
+            shareLinkTask.Title = item.description;
+            shareLinkTask.LinkUri = new Uri(item.url);
+            shareLinkTask.Message = "Check out this article I found on Hacker News for Windows Phone!";
+            shareLinkTask.Show();
         }
     }
 }
