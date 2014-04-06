@@ -35,5 +35,4 @@
             </toolkit:ContextMenu>
         </toolkit:ContextMenuService.ContextMenu>
     </Grid>
-
 </UserControl>
