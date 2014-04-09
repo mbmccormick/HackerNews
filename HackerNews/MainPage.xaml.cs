@@ -69,11 +69,11 @@ namespace HackerNews
             }
         }
 
-        private void LoadData()
+        private async void LoadData()
         {
             this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
-            App.HackerNewsClient.GetTopPosts((result) =>
+            await App.HackerNewsClient.GetTopPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -98,7 +98,7 @@ namespace HackerNews
                 });
             });
 
-            App.HackerNewsClient.GetNewPosts((result) =>
+            await App.HackerNewsClient.GetNewPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {
@@ -123,7 +123,7 @@ namespace HackerNews
                 });
             });
 
-            App.HackerNewsClient.GetAskPosts((result) =>
+            await App.HackerNewsClient.GetAskPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
                 {

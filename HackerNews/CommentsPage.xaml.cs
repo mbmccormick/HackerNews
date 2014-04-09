@@ -72,14 +72,14 @@ namespace HackerNews
             }
         }
 
-        private void LoadData()
+        private async void LoadData()
         {
             string id;
             if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
                 this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
-                App.HackerNewsClient.GetComments((result) =>
+                await App.HackerNewsClient.GetComments((result) =>
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
