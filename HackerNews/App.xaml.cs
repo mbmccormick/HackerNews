@@ -87,12 +87,23 @@ namespace HackerNews
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            LittleWatson.ReportException(e.ExceptionObject, null);
-
-            RootFrame.Dispatcher.BeginInvoke(() =>
+            if (e.ExceptionObject is WebException)
             {
-                LittleWatson.CheckForPreviousException(false);
-            });
+                var ex = e.ExceptionObject as WebException;
+                RootFrame.Dispatcher.BeginInvoke(() =>
+                {
+                    MessageBox.Show(ex.Message + " Please check your network connection and try again.", "Network Error", MessageBoxButton.OK);
+                });
+            }
+            else
+            {
+                LittleWatson.ReportException(e.ExceptionObject, null);
+
+                RootFrame.Dispatcher.BeginInvoke(() =>
+                {
+                    LittleWatson.CheckForPreviousException(false);
+                });
+            }
 
             e.Handled = true;
 
@@ -138,6 +149,8 @@ namespace HackerNews
             // Set the root visual to allow the application to render
             if (RootVisual != RootFrame)
                 RootVisual = RootFrame;
+
+            SmartDispatcher.Initialize();
 
             // Remove this handler since it is no longer needed
             RootFrame.Navigated -= CompleteInitializePhoneApplication;

@@ -280,12 +280,15 @@ namespace HackerNews.Common
                 version = parts[1].Split('=')[1];
             }
 
+            string platformVersion = System.Environment.OSVersion.Version.ToString();
+
             // Body text including hardware, firmware and software info
-            string body = string.Format(contents + "\n\n---------------------------------\nDevice Name: {0}\nDevice Manufacturer: {1}\nDevice Firmware Version: {2}\nDevice Hardware Version: {3}\nApplication Version: {4}\n---------------------------------\n\nNote: This e-mail exchange is governed by {5}’s privacy policy. You can find more details on the About page in the application.",
+            string body = string.Format(contents + "\n\n---------------------------------\nDevice Name: {0}\nDevice Manufacturer: {1}\nDevice Firmware Version: {2}\nDevice Hardware Version: {3}\nPlatform Version: {4}\nApplication Version: {5}\n---------------------------------\n\nNote: This e-mail exchange is governed by {6}’s privacy policy. You can find more details on the About page in the application.",
                  DeviceStatus.DeviceName,
                  DeviceStatus.DeviceManufacturer,
                  DeviceStatus.DeviceFirmwareVersion,
                  DeviceStatus.DeviceHardwareVersion,
+                 platformVersion,
                  version,
                  "Hacker News");
 
