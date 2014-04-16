@@ -34,8 +34,8 @@
               AppPublisherLabel=""
               AppVersionLabel="Version:"
               AppAdditionalNotesLabel="Additional Notes:"
-              AppReviewButtonContent="Review This App"
-              AppBuyButtonContent="Buy This App">
+              AppReviewButtonContent="review this app"
+              AppBuyButtonContent="buy this app">
       <Links>
         <!-- A collection of links presented on the front page. -->
         <!-- By using different protocols like http or mailto you can invoke the respective applications -->
