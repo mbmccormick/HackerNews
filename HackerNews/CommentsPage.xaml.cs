@@ -18,6 +18,7 @@ using HackerNews.Models;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using System.Windows.Controls.Primitives;
+using Windows.ApplicationModel.Store;
 
 namespace HackerNews
 {
@@ -115,6 +116,26 @@ namespace HackerNews
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
 
             FeedbackHelper.Default.Feedback();
+        }
+        private async void Donate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var productList = await CurrentApp.LoadListingInformationAsync();
+                var product = productList.ProductListings.FirstOrDefault(p => p.Value.ProductType == ProductType.Consumable);
+                var receipt = await CurrentApp.RequestProductPurchaseAsync(product.Value.ProductId, true);
+
+                if (CurrentApp.LicenseInformation.ProductLicenses[product.Value.ProductId].IsActive)
+                {
+                    CurrentApp.ReportProductFulfillment(product.Value.ProductId);
+
+                    MessageBox.Show("Thank you for your donation! Your support motivates me to keep developing for Hacker News, the best Hacker News client for Windows Phone.", "Thank You", MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
         }
 
         private void About_Click(object sender, EventArgs e)

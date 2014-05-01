@@ -117,6 +117,7 @@
             <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="Refresh_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
+                <shell:ApplicationBarMenuItem Text="donate" Click="Donate_Click" />
                 <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

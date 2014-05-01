@@ -87,6 +87,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized"  BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
+                <shell:ApplicationBarMenuItem Text="donate" Click="Donate_Click" />
                 <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
