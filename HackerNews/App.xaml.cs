@@ -6,7 +6,6 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using HackerNews.Resources;
 using HackerNews.Common;
 using System.Collections;
 using System.Windows.Media;
