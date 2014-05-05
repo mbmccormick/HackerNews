@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using HackerNews.API.Models;
-using System.Windows.Documents;
-using System.Text.RegularExpressions;
-using System.Windows.Media;
-using Microsoft.Phone.Tasks;
 using HackerNews.Models;
 
 namespace HackerNews
