@@ -107,10 +107,10 @@ namespace HackerNews
         {
             this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            this.txtLoading.Visibility = System.Windows.Visibility.Visible;
-
             if (Comments.Count == 0)
             {
+                this.txtLoading.Visibility = System.Windows.Visibility.Visible;
+
                 this.lstComments.Visibility = System.Windows.Visibility.Collapsed;
             }
         }

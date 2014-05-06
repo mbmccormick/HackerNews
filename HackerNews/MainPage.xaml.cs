@@ -151,14 +151,14 @@ namespace HackerNews
             this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
-            this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
-
             if (TopPosts.Count == 0 &&
                 NewPosts.Count == 0 &&
                 AskPosts.Count == 0)
             {
+                this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
                 this.lstTopPosts.Visibility = System.Windows.Visibility.Collapsed;
                 this.lstNewPosts.Visibility = System.Windows.Visibility.Collapsed;
                 this.lstAskPosts.Visibility = System.Windows.Visibility.Collapsed;
