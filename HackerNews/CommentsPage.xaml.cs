@@ -103,6 +103,43 @@ namespace HackerNews
             }
         }
 
+        private void ResetDefaultLayout()
+        {
+            this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+            this.txtLoading.Visibility = System.Windows.Visibility.Visible;
+
+            if (Comments.Count == 0)
+            {
+                this.lstComments.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void ToggleLoadingText()
+        {
+            this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+
+            this.lstComments.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ToggleEmptyText()
+        {
+            if (Comments.Count == 0)
+                this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private static void Flatten(List<Comment> enumerable)
+        {
+            foreach (Comment item in enumerable)
+            {
+                CommentsDataSource.Add(new CommentItem(item));
+
+                Flatten(item.comments);
+            }
+        }
+
         private void Feedback_Click(object sender, EventArgs e)
         {
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
@@ -135,40 +172,6 @@ namespace HackerNews
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
 
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
-        }
-
-        private void ResetDefaultLayout()
-        {
-            this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
-
-            this.txtLoading.Visibility = System.Windows.Visibility.Visible;
-
-            this.lstComments.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private void ToggleLoadingText()
-        {
-            this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
-
-            this.lstComments.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void ToggleEmptyText()
-        {
-            if (Comments.Count == 0)
-                this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
-            else
-                this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private static void Flatten(List<Comment> enumerable)
-        {
-            foreach (Comment item in enumerable)
-            {
-                CommentsDataSource.Add(new CommentItem(item));
-
-                Flatten(item.comments);
-            }
         }
 
         private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
