@@ -67,6 +67,8 @@ namespace HackerNews
         {
             this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
+            ResetDefaultLayout();
+
             await App.HackerNewsClient.GetTopPosts((result) =>
             {
                 SmartDispatcher.BeginInvoke(() =>
@@ -141,6 +143,21 @@ namespace HackerNews
                     }
                 });
             });
+        }
+
+        private void ResetDefaultLayout()
+        {
+            this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+            this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+            this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
+
+            this.lstTopPosts.Visibility = System.Windows.Visibility.Collapsed;
+            this.lstNewPosts.Visibility = System.Windows.Visibility.Collapsed;
+            this.lstAskPosts.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void ToggleLoadingText()

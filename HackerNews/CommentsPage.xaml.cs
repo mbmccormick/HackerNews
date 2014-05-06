@@ -70,6 +70,8 @@ namespace HackerNews
             {
                 this.prgLoading.Visibility = System.Windows.Visibility.Visible;
 
+                ResetDefaultLayout();
+
                 await App.HackerNewsClient.GetComments((result) =>
                 {
                     SmartDispatcher.BeginInvoke(() =>
@@ -135,25 +137,28 @@ namespace HackerNews
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
 
+        private void ResetDefaultLayout()
+        {
+            this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+            this.txtLoading.Visibility = System.Windows.Visibility.Visible;
+
+            this.lstComments.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
         private void ToggleLoadingText()
         {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                this.lstComments.Visibility = System.Windows.Visibility.Visible;
-            });
+            this.lstComments.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void ToggleEmptyText()
         {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                if (Comments.Count == 0)
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
-            });
+            if (Comments.Count == 0)
+                this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private static void Flatten(List<Comment> enumerable)
@@ -172,7 +177,7 @@ namespace HackerNews
             {
                 if (e.ItemKind == LongListSelectorItemKind.Item)
                 {
-                    Comments.Add(CommentsDataSource[currentOffset]);                    
+                    Comments.Add(CommentsDataSource[currentOffset]);
                     currentOffset++;
                 }
             }

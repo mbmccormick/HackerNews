@@ -65,7 +65,7 @@ namespace HackerNews
 
             ShareLinkTask shareLinkTask = new ShareLinkTask();
 
-            shareLinkTask.Title = item.description;
+            shareLinkTask.Title = item.title;
             shareLinkTask.LinkUri = new Uri(item.url);
             shareLinkTask.Message = "Check out this article I found on Hacker News for Windows Phone!";
             shareLinkTask.Show();
