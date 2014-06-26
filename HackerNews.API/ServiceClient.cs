@@ -230,8 +230,8 @@ namespace HackerNews.API
             }
 
             data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
-            data.description = data.points == 1 ? data.points + " point, posted " + data.time_ago + " by " + data.user : data.points + " points, posted " + data.time_ago + " by " + data.user;
-            data.description = data.type == "job" ? "Posted " + data.time_ago : data.description;
+            data.description = data.points == 1 ? data.points + " point by " + data.user + " " + data.time_ago : data.points + " points by " + data.user + " " + data.time_ago;
+            data.description = data.type == "job" ? data.time_ago : data.description;
 
             return data;
         }
@@ -245,8 +245,8 @@ namespace HackerNews.API
             }
 
             data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
-            data.description = data.points == 1 ? data.points + " point, posted " + data.time_ago + " by " + data.user : data.points + " points, posted " + data.time_ago + " by " + data.user;
-            data.description = data.type == "job" ? "Posted " + data.time_ago : data.description;
+            data.description = data.points == 1 ? data.points + " point by " + data.user + " " + data.time_ago : data.points + " points by " + data.user + " " + data.time_ago;
+            data.description = data.type == "job" ? data.time_ago : data.description;
 
             return data;
         }

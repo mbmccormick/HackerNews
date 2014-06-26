@@ -29,7 +29,7 @@
         <Setter Property="H3FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
         <Setter Property="H3FontWeight" Value="Bold"/>
         <Setter Property="H3FontStyle" Value="Normal" />
-        <Setter Property="HyperlinkForeground" Value="{StaticResource PhoneAccentBrush}"/>
+        <Setter Property="HyperlinkForeground" Value="#FF007AFF"/>
         <Setter Property="HyperlinkFontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
         <Setter Property="HyperlinkFontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
         <Setter Property="HyperlinkFontWeight" Value="Normal"/>

@@ -569,7 +569,7 @@ namespace Krempel.WP7.Core.Controls
         private void AppendLineBreak(HtmlNode node, Paragraph paragraph, Span span, bool traverse)
         {
             LineBreak lineBreak = new LineBreak();
-
+            
             if (span != null)
             {
                 span.Inlines.Add(lineBreak);
@@ -642,8 +642,11 @@ namespace Krempel.WP7.Core.Controls
                 hyperlink.FontWeight = HyperlinkFontWeight;
 
             if (this.Foreground != HyperlinkForeground)
+            {
                 hyperlink.Foreground = HyperlinkForeground;
-
+                hyperlink.MouseOverForeground = HyperlinkForeground;
+            }
+            
             if (span != null)
             {
                 span.Inlines.Add(hyperlink);

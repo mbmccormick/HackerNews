@@ -11,7 +11,7 @@ namespace HackerNews.API.Models
     public class Post : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         public string id { get; set; }
         public string title { get; set; }
         public string url { get; set; }
@@ -51,6 +51,26 @@ namespace HackerNews.API.Models
                     return new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
                 else
                     return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            }
+        }
+
+        public string friendly_url
+        {
+            get
+            {
+                if (this.url != null)
+                {
+                    string friendlyUrl = this.url.ToLower().Replace("https://", "").Replace("http://", "");
+
+                    if (friendlyUrl.Length > 36)
+                        return friendlyUrl.Substring(0, 33) + "...";
+                    else
+                        return friendlyUrl;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
