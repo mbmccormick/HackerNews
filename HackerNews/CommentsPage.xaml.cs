@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Navigation;
 using HackerNews.API.Models;
 using HackerNews.Common;
-using HackerNews.Models;
 using Microsoft.Phone.Controls;
 using Windows.ApplicationModel.Store;
 

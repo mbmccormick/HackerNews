@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using HackerNews.Models;
 using System.Windows.Media;
 using HackerNews.API.Models;
 

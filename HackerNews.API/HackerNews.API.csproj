@@ -86,7 +86,6 @@
     <Compile Include="Common\AsyncState.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\CommentItem.cs" />
     <Compile Include="Models\CommentResponse.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="ServiceClient.cs" />

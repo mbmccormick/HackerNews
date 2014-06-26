@@ -18,7 +18,7 @@
             <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
             <kctrl:HtmlTextBlock Html="{Binding content}" Margin="-12,0,-12,0" NavigationCommand="{StaticResource NavigationCommand}" />
 
-            <ItemsControl ItemsSource="{Binding comments}" Margin="0,0,0,0" Foreground="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding comments}" Margin="0,0,0,0" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <uc:CommentControl Margin="0,24,0,0" />
