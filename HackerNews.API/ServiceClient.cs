@@ -229,7 +229,7 @@ namespace HackerNews.API
                 data.user = "N/A";
             }
 
-            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            if (data.time_ago.StartsWith("0 minutes ago") == true) data.time_ago = "just now";
             data.description = data.points == 1 ? data.points + " point by " + data.user + " " + data.time_ago : data.points + " points by " + data.user + " " + data.time_ago;
             data.description = data.type == "job" ? data.time_ago : data.description;
 
@@ -244,7 +244,7 @@ namespace HackerNews.API
                 data.user = "N/A";
             }
 
-            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            if (data.time_ago.StartsWith("0 minutes ago") == true) data.time_ago = "just now";
             data.description = data.points == 1 ? data.points + " point by " + data.user + " " + data.time_ago : data.points + " points by " + data.user + " " + data.time_ago;
             data.description = data.type == "job" ? data.time_ago : data.description;
 
@@ -253,7 +253,7 @@ namespace HackerNews.API
 
         private Comment FormatComment(Comment data)
         {
-            data.time_ago = data.time_ago.Replace("0 minutes ago", "just now");
+            if (data.time_ago.StartsWith("0 minutes ago") == true) data.time_ago = "just now";
             data.title = data.user + " " + data.time_ago;
 
             for (int i = 0; i < data.comments.Count; i++)

@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="HackerNews.CommentControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
@@ -12,8 +13,18 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <StackPanel x:Name="LayoutRoot" Background="Transparent">
-        <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
-        <kctrl:HtmlTextBlock Html="{Binding content}" Margin="-12,0,-12,0" NavigationCommand="{StaticResource NavigationCommand}" />
-    </StackPanel>
+    <Border x:Name="LayoutRoot" Background="Transparent" BorderBrush="#FFFF6600" BorderThickness="1,0,0,0">
+        <StackPanel Margin="11,0,0,0">
+            <TextBlock Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="Black" />
+            <kctrl:HtmlTextBlock Html="{Binding content}" Margin="-12,0,-12,0" NavigationCommand="{StaticResource NavigationCommand}" />
+
+            <ItemsControl ItemsSource="{Binding comments}" Margin="0,0,0,0" Foreground="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <uc:CommentControl Margin="0,24,0,0" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
 </UserControl>

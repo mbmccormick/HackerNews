@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using HackerNews.Models;
+using System.Windows.Media;
+using HackerNews.API.Models;
 
 namespace HackerNews
 {
@@ -15,9 +17,12 @@ namespace HackerNews
 
         private void CommentControl_Loaded(object sender, RoutedEventArgs e)
         {
-            CommentItem item = this.DataContext as CommentItem;
-
-            this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
+            Comment item = this.DataContext as Comment;
+            
+            if (item.level == 0)
+            {
+                this.LayoutRoot.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            }
         }
     }
 }
