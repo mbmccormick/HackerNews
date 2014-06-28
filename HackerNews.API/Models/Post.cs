@@ -48,9 +48,20 @@ namespace HackerNews.API.Models
             get
             {
                 if (this.is_read == true)
-                    return new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+                    return new SolidColorBrush(Color.FromArgb(128, 0, 0, 0));
                 else
                     return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            }
+        }
+
+        public SolidColorBrush url_foreground
+        {
+            get
+            {
+                if (this.is_read == true)
+                    return new SolidColorBrush(Color.FromArgb(128, 255, 102, 0));
+                else
+                    return new SolidColorBrush(Color.FromArgb(192, 255, 102, 0));
             }
         }
 
@@ -65,7 +76,10 @@ namespace HackerNews.API.Models
                     if (friendlyUrl.Length > 36)
                         return friendlyUrl.Substring(0, 33) + "...";
                     else
-                        return friendlyUrl;
+                        if (friendlyUrl.EndsWith("/") == true)
+                            return friendlyUrl.Substring(0, friendlyUrl.Length - 1);
+                        else
+                            return friendlyUrl;
                 }
                 else
                 {
@@ -79,7 +93,7 @@ namespace HackerNews.API.Models
             get
             {
                 if (this.is_read == true)
-                    return new SolidColorBrush(Color.FromArgb(255, 195, 195, 195));
+                    return new SolidColorBrush(Color.FromArgb(128, 130, 130, 130));
                 else
                     return new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
             }
@@ -90,7 +104,7 @@ namespace HackerNews.API.Models
             get
             {
                 if (this.is_read == true)
-                    return new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+                    return new SolidColorBrush(Color.FromArgb(128, 187, 187, 187));
                 else
                     return new SolidColorBrush(Color.FromArgb(255, 187, 187, 187));
             }

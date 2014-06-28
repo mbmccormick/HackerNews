@@ -1,5 +1,4 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="HackerNews.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,10 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:uc="clr-namespace:HackerNews"
+    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SampleDataSource"
+    x:Class="HackerNews.MainPage"
     mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Background="#FFFEF7F3"
+    Background="#FFFFFFFF"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="#FFFF6600"
@@ -55,17 +54,27 @@
         </Style>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="#FFFEF7F3">
-        <ProgressBar Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
+    <Grid x:Name="LayoutRoot" Background="#FFFFFFFF">
+        <ProgressBar x:Name="prgLoading" Foreground="#FFFF6600" IsIndeterminate="True" Margin="0,0,0,0" VerticalAlignment="Top" />
 
-        <phone:Pivot Name="pivLayout" Title="HACKER NEWS" Foreground="Black">
-            <phone:PivotItem Header="top">
+        <phone:Pivot x:Name="pivLayout" Foreground="Black">
+            <phone:Pivot.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Text="HACKER NEWS" Style="{StaticResource PhoneTextSmallStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="Black" Margin="0,0,0,6" />
+                </DataTemplate>
+            </phone:Pivot.TitleTemplate>
+            <phone:PivotItem>
+                <phone:PivotItem.Header>
+                    <TextBlock Text="TOP" Foreground="Black" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilyBold}" FontWeight="ExtraBold" />
+                </phone:PivotItem.Header>
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstTopPosts" ItemsSource="{Binding TopPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <uc:PostControl Margin="12,0,0,24" />
+                                    <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
+                                        <uc:PostControl Margin="0,0,0,18" />
+                                    </Border>
                                 </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
@@ -76,13 +85,18 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="new">
+            <phone:PivotItem>
+                <phone:PivotItem.Header>
+                    <TextBlock Text="NEW" Foreground="Black" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilyBold}" FontWeight="ExtraBold" />
+                </phone:PivotItem.Header>
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstNewPosts" ItemsSource="{Binding NewPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <uc:PostControl Margin="12,0,0,24" />
+                                    <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
+                                        <uc:PostControl Margin="0,0,0,18" />
+                                    </Border>
                                 </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
@@ -93,13 +107,18 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="ask">
+            <phone:PivotItem>
+                <phone:PivotItem.Header>
+                    <TextBlock Text="ASK" Foreground="Black" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilyBold}" FontWeight="ExtraBold" />
+                </phone:PivotItem.Header>
                 <Grid Margin="0,0,0,0">
                     <phone:LongListSelector x:Name="lstAskPosts" ItemsSource="{Binding AskPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <uc:PostControl Margin="12,0,0,24" />
+                                    <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
+                                        <uc:PostControl Margin="0,0,0,18" />
+                                    </Border>
                                 </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
@@ -114,12 +133,12 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#FFFF6600" ForegroundColor="#FF000000">
-            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="Refresh_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="feedback" Click="Feedback_Click" />
                 <shell:ApplicationBarMenuItem Text="donate" Click="Donate_Click" />
                 <shell:ApplicationBarMenuItem Text="about" Click="About_Click" />
             </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Resources/Refresh.png" Text="refresh" Click="Refresh_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
