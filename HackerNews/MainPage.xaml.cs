@@ -16,12 +16,14 @@ namespace HackerNews
 
         public static ObservableCollection<Post> TopPosts { get; set; }
         public static ObservableCollection<Post> NewPosts { get; set; }
+        public static ObservableCollection<Post> ShowPosts { get; set; }
         public static ObservableCollection<Post> AskPosts { get; set; }
 
         #endregion
 
         private bool isTopLoaded = false;
         private bool isNewLoaded = false;
+        private bool isShowLoaded = false;
         private bool isAskLoaded = false;
 
         public MainPage()
@@ -32,6 +34,7 @@ namespace HackerNews
 
             TopPosts = new ObservableCollection<Post>();
             NewPosts = new ObservableCollection<Post>();
+            ShowPosts = new ObservableCollection<Post>();
             AskPosts = new ObservableCollection<Post>();
         }
 
@@ -54,6 +57,7 @@ namespace HackerNews
 
                 if (isTopLoaded == false ||
                     isNewLoaded == false ||
+                    isShowLoaded == false ||
                     isAskLoaded == false)
                 {
                     LoadData();
@@ -84,6 +88,7 @@ namespace HackerNews
 
                     if (isTopLoaded &&
                         isNewLoaded &&
+                        isShowLoaded &&
                         isAskLoaded)
                     {
                         ToggleLoadingText();
@@ -109,6 +114,33 @@ namespace HackerNews
 
                     if (isTopLoaded &&
                         isNewLoaded &&
+                        isShowLoaded &&
+                        isAskLoaded)
+                    {
+                        ToggleLoadingText();
+                        ToggleEmptyText();
+
+                        this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+                    }
+                });
+            });
+
+            await App.HackerNewsClient.GetShowPosts((result) =>
+            {
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    ShowPosts.Clear();
+
+                    foreach (Post item in result)
+                    {
+                        ShowPosts.Add(item);
+                    }
+
+                    isShowLoaded = true;
+
+                    if (isTopLoaded &&
+                        isShowLoaded &&
+                        isShowLoaded &&
                         isAskLoaded)
                     {
                         ToggleLoadingText();
@@ -134,6 +166,7 @@ namespace HackerNews
 
                     if (isTopLoaded &&
                         isNewLoaded &&
+                        isShowLoaded &&
                         isAskLoaded)
                     {
                         ToggleLoadingText();
@@ -149,18 +182,22 @@ namespace HackerNews
         {
             this.txtTopPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtShowPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
             if (TopPosts.Count == 0 &&
                 NewPosts.Count == 0 &&
+                ShowPosts.Count == 0 &&
                 AskPosts.Count == 0)
             {
                 this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Visible;
                 this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Visible;
+                this.txtShowPostsLoading.Visibility = System.Windows.Visibility.Visible;
                 this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Visible;
 
                 this.lstTopPosts.Visibility = System.Windows.Visibility.Collapsed;
                 this.lstNewPosts.Visibility = System.Windows.Visibility.Collapsed;
+                this.lstShowPosts.Visibility = System.Windows.Visibility.Collapsed;
                 this.lstAskPosts.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
@@ -169,10 +206,12 @@ namespace HackerNews
         {
             this.txtTopPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
             this.txtNewPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
+            this.txtShowPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
             this.txtAskPostsLoading.Visibility = System.Windows.Visibility.Collapsed;
 
             this.lstTopPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstNewPosts.Visibility = System.Windows.Visibility.Visible;
+            this.lstShowPosts.Visibility = System.Windows.Visibility.Visible;
             this.lstAskPosts.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -188,6 +227,11 @@ namespace HackerNews
             else
                 this.txtNewPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
+            if (ShowPosts.Count == 0)
+                this.txtShowPostsEmpty.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.txtShowPostsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
             if (AskPosts.Count == 0)
                 this.txtAskPostsEmpty.Visibility = System.Windows.Visibility.Visible;
             else
@@ -200,6 +244,7 @@ namespace HackerNews
 
             isTopLoaded = false;
             isNewLoaded = false;
+            isShowLoaded = false;
             isAskLoaded = false;
 
             LoadData();
@@ -273,6 +318,10 @@ namespace HackerNews
                             });
                         }
                         else if (target == this.lstNewPosts)
+                        {
+                            this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
+                        }
+                        else if (target == this.lstShowPosts)
                         {
                             this.prgLoading.Visibility = System.Windows.Visibility.Collapsed;
                         }

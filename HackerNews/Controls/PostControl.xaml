@@ -19,7 +19,7 @@
         <StackPanel x:Name="LayoutRoot" Background="Transparent" Tap="PostContent_Tap">
             <TextBlock Name="txtTitle" Text="{Binding title}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextTitle3Style}" Foreground="{Binding title_foreground}" />
             <TextBlock Name="txtDescription" Text="{Binding description}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding description_foreground}" />
-            <TextBlock Name="txtUrl" Text="{Binding friendly_url}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding url_foreground}" />
+            <TextBlock Name="txtUrl" Text="{Binding friendly_url}" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding url_foreground}" Visibility="{Binding friendly_url_visibility}" />
         </StackPanel>
 
         <StackPanel Name="stkCommentCount" Grid.Column="1" Margin="0,-8,-6,0" Width="58" Tap="Comments_Tap">

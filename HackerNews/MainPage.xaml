@@ -73,7 +73,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
-                                        <uc:PostControl Margin="0,0,0,18" />
+                                        <uc:PostControl Margin="0,0,0,16" />
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>
@@ -95,7 +95,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
-                                        <uc:PostControl Margin="0,0,0,18" />
+                                        <uc:PostControl Margin="0,0,0,16" />
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>
@@ -109,6 +109,28 @@
 
             <phone:PivotItem>
                 <phone:PivotItem.Header>
+                    <TextBlock Text="SHOW" Foreground="Black" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilyBold}" FontWeight="ExtraBold" />
+                </phone:PivotItem.Header>
+                <Grid Margin="0,0,0,0">
+                    <phone:LongListSelector x:Name="lstShowPosts" ItemsSource="{Binding ShowPosts}" Margin="0,0,0,0" Foreground="Black" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource LongListSelectorCustomStyle}" ItemRealized="LongListSelector_ItemRealized" ItemUnrealized="LongListSelector_ItemUnrealized">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
+                                        <uc:PostControl Margin="0,0,0,16" />
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                    <TextBlock x:Name="txtShowPostsLoading" Visibility="Visible" TextWrapping="Wrap" Margin="12,-6,0,0" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                    <TextBlock x:Name="txtShowPostsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Margin="12,-6,0,0" Text="Sorry, could not download posts right now." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
+                </Grid>
+            </phone:PivotItem>
+            
+            <phone:PivotItem>
+                <phone:PivotItem.Header>
                     <TextBlock Text="ASK" Foreground="Black" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilyBold}" FontWeight="ExtraBold" />
                 </phone:PivotItem.Header>
                 <Grid Margin="0,0,0,0">
@@ -117,7 +139,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Border BorderBrush="#80DDDDDD" BorderThickness="0,0,0,1" Margin="12,0,0,12">
-                                        <uc:PostControl Margin="0,0,0,18" />
+                                        <uc:PostControl Margin="0,0,0,16" />
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>

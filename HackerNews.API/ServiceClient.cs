@@ -118,6 +118,42 @@ namespace HackerNews.API
             callback(data);
         }
 
+        public async Task GetShowPosts(Action<List<Post>> callback)
+        {
+            HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/show") as HttpWebRequest;
+            request.Accept = "application/json";
+
+            var response = await request.GetResponseAsync().ConfigureAwait(false);
+
+            Stream stream = response.GetResponseStream();
+            UTF8Encoding encoding = new UTF8Encoding();
+            StreamReader sr = new StreamReader(stream, encoding);
+
+            JsonTextReader tr = new JsonTextReader(sr);
+            List<Post> data = new JsonSerializer().Deserialize<List<Post>>(tr);
+
+            tr.Close();
+            sr.Dispose();
+
+            stream.Dispose();
+
+            foreach (var item in data)
+            {
+                item.title = CleanTitleText(item.title);
+                item.is_read = PostHistory.Contains(item.id);
+
+                if (item.url.StartsWith("http") == false)
+                    item.url = "http://news.ycombinator.com/item?id=" + item.id;
+            }
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i] = FormatPost(data[i]);
+            }
+
+            callback(data);
+        }
+
         public async Task GetAskPosts(Action<List<Post>> callback)
         {
             HttpWebRequest request = HttpWebRequest.Create("http://" + serverAddress + "/ask") as HttpWebRequest;

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace HackerNews.API.Models
@@ -74,16 +75,37 @@ namespace HackerNews.API.Models
                     string friendlyUrl = this.url.ToLower().Replace("https://", "").Replace("http://", "");
 
                     if (friendlyUrl.Length > 36)
-                        return friendlyUrl.Substring(0, 33) + "...";
-                    else
-                        if (friendlyUrl.EndsWith("/") == true)
-                            return friendlyUrl.Substring(0, friendlyUrl.Length - 1);
-                        else
-                            return friendlyUrl;
+                        friendlyUrl = friendlyUrl.Substring(0, 33) + "...";
+
+                    if (friendlyUrl.EndsWith("/") == true)
+                        friendlyUrl = friendlyUrl.Substring(0, friendlyUrl.Length - 1);
+
+                    if (friendlyUrl.StartsWith("www.") == true)
+                        friendlyUrl = friendlyUrl.Substring(4, friendlyUrl.Length - 1 - 4);
+
+                    if (friendlyUrl.StartsWith("news.ycombinator.com") == true)
+                        friendlyUrl = null;
+
+                    return friendlyUrl;
                 }
                 else
                 {
                     return null;
+                }
+            }
+        }
+
+        public Visibility friendly_url_visibility
+        {
+            get
+            {
+                if (this.friendly_url != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
                 }
             }
         }
