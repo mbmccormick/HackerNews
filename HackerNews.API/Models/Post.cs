@@ -81,7 +81,7 @@ namespace HackerNews.API.Models
                         friendlyUrl = friendlyUrl.Substring(0, friendlyUrl.Length - 1);
 
                     if (friendlyUrl.StartsWith("www.") == true)
-                        friendlyUrl = friendlyUrl.Substring(4, friendlyUrl.Length - 1 - 4);
+                        friendlyUrl = friendlyUrl.Substring(4, friendlyUrl.Length - 4);
 
                     if (friendlyUrl.StartsWith("news.ycombinator.com") == true)
                         friendlyUrl = null;

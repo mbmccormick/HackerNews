@@ -64,6 +64,9 @@
     </Item>
     <Item Title="what's new?"
           Type="text">
+      Version 1.2
+      This update to Hacker News includes a complete UI overhaul with increased performance and new theme. The application now fetches the latest Show posts. Also included in this release are several bug fixes.
+      
       Version 1.1
       This release of Hacker News includes several performance and usability enhancements. The application now fetches posts and comments much faster than before, with very little loading time required.
 
