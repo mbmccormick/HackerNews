@@ -16,12 +16,9 @@ namespace HackerNews
 
         private void CommentControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Comment item = this.DataContext as Comment;
-            
-            if (item.level == 0)
-            {
-                this.LayoutRoot.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            }
+            CommentItem item = this.DataContext as CommentItem;
+
+            this.LayoutRoot.Margin = new Thickness(12 * item.level, 0, 0, 0);
         }
     }
 }
