@@ -8,6 +8,7 @@ using HackerNews.API;
 using HackerNews.Common;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Newtonsoft.Json;
 
 namespace HackerNews
 {
@@ -88,6 +89,14 @@ namespace HackerNews
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {
                     MessageBox.Show(ex.Message + " Please check your network connection and try again.", "Network Error", MessageBoxButton.OK);
+                });
+            }
+            else if (e.ExceptionObject is JsonSerializationException)
+            {
+                var ex = e.ExceptionObject as WebException;
+                RootFrame.Dispatcher.BeginInvoke(() =>
+                {
+                    MessageBox.Show(ex.Message + " The Hacker News API is not available at this time. Please try again later.", "Server Error", MessageBoxButton.OK);
                 });
             }
             else

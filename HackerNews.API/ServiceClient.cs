@@ -302,6 +302,9 @@ namespace HackerNews.API
 
         private string CleanTitleText(string data)
         {
+            if (data == null)
+                return null;
+
             data = data.Replace("�", "");
             data = data.Replace("&amp;", "");
             data = data.Replace("&euro;&trade;", "'");
@@ -319,6 +322,9 @@ namespace HackerNews.API
 
         private string CleanContentText(string data)
         {
+            if (data == null)
+                return null;
+
             if (data.StartsWith("<p>") == false)
                 data = "<p>" + data;
 

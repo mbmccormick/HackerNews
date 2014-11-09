@@ -64,7 +64,7 @@
         <StackPanel Grid.Row="0" Margin="12,18,0,28" DataContext="{Binding CurrentPost}">
             <TextBlock Text="HACKER NEWS" Style="{StaticResource PhoneTextSmallStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="Black" />
             <TextBlock x:Name="txtLoading" Margin="12,12,0,0" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FFFF6600" />
-            <TextBlock Name="txtTitle" Margin="12,24,24,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" />
+            <TextBlock Name="txtTitle" Margin="12,24,24,0" Style="{StaticResource PhoneTextTitle2Style}" Foreground="Black" TextWrapping="Wrap" Tap="txtTitle_Tap" />
             <TextBlock Name="txtDescription" Margin="12,0,24,12" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FF828282" TextWrapping="Wrap" />
         </StackPanel>
 

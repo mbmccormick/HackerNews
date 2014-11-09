@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using HackerNews.API.Models;
 using HackerNews.Common;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 using Windows.ApplicationModel.Store;
 
 namespace HackerNews
@@ -130,6 +131,16 @@ namespace HackerNews
                 this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
         }
 
+        private static void Flatten(List<Comment> enumerable)
+        {
+            foreach (Comment item in enumerable)
+            {
+                CommentsDataSource.Add(new CommentItem(item));
+
+                Flatten(item.comments);
+            }
+        }
+
         private void Feedback_Click(object sender, EventArgs e)
         {
             if (this.prgLoading.Visibility == System.Windows.Visibility.Visible) return;
@@ -164,14 +175,18 @@ namespace HackerNews
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
 
-        private static void Flatten(List<Comment> enumerable)
+        private void txtTitle_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            foreach (Comment item in enumerable)
+            if (CurrentPost.type == "link" ||
+                CurrentPost.type == "job")
             {
-                CommentsDataSource.Add(new CommentItem(item));
+                WebBrowserTask webBrowserTask = new WebBrowserTask();
+                webBrowserTask.Uri = new Uri(CurrentPost.url);
 
-                Flatten(item.comments);
+                webBrowserTask.Show();
             }
+
+            App.HackerNewsClient.MarkPostAsRead(CurrentPost.id);
         }
 
         private void lstComments_ItemRealized(object sender, ItemRealizationEventArgs e)
