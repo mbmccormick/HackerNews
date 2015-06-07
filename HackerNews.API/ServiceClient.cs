@@ -12,7 +12,7 @@ namespace HackerNews.API
 {
     public class ServiceClient
     {
-        private string serverAddress = "node-hnapi.azurewebsites.net";
+        private string serverAddress = "node-hnapi-eu.herokuapp.com";
 
         public List<string> PostHistory;
         public int MaxPostHistory = 250;
@@ -27,7 +27,7 @@ namespace HackerNews.API
                 PostHistory = new List<string>();
 
             if (debug == true)
-                serverAddress = "node--hnapi-azurewebsites-net-86lzpdm4xgow.runscope.net";
+                serverAddress = "node--hnapi--eu-herokuapp-com-86lzpdm4xgow.runscope.net";
         }
 
         public async Task GetTopPosts(Action<List<Post>> callback)
